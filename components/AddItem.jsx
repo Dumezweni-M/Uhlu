@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, TextInput, Pressable, Text } from 'react-native'
 import { useSQLiteContext } from "expo-sqlite";
+import Ionicons from "@react-native-vector-icons/ionicons";
 
 
 
@@ -19,8 +20,8 @@ const AddItem = ({onAdd}) => {
         }
     }
     return (
-        <View className="w-[100%] items-center font-bold p-2 flex-row">
-            <TextInput className="border m-2 rounded-md w-3/4"
+        <View className="w-[100%] items-center font-bold p-2 flex-row bg-sky-300">
+            <TextInput className="m-2 pl-4 rounded-md w-4/5 bg-white"
             placeholder="Add Task Item"
             value={task}
             onChangeText={ setTask }
@@ -28,8 +29,8 @@ const AddItem = ({onAdd}) => {
 
 
 
-            <Pressable onPress={handleSubmit} className="border p-2 rounded-md">
-                <Text className="">Add Item</Text>
+            <Pressable onPress={handleSubmit} className="p-2 rounded-full bg-white">
+                <Ionicons name="add" color="black" size={20}/>
             </Pressable>
         </View>
     )
