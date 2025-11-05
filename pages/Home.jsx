@@ -12,9 +12,8 @@ const Home = ({ navigation }) => {
 
     return (
         <PageWrapper>
-            <View>
                 <AddItem/>
-            </View>
+                <List/>
         </PageWrapper>
     )
 }

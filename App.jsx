@@ -5,6 +5,9 @@ import { StatusBar } from "expo-status-bar";
 
 import Home from "./pages/Home";
 import Completed from "./pages/Completed";
+import Calendar from "./pages/Calendar";
+import Stats from "./pages/Stats";
+import List from "./components/ListFetch";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,14 +17,15 @@ export default function App() {
        <SQLiteProvider
           databaseName="Uhlu.db"
           onInit={ async (db) => {
-            await db.execAsync (`
-                CREATE TABLE IF NOT EXISTS list (
-                  id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  item TEXT NOT NULL,
-                  due TEXT,
-                  isComplete INTEGER DEFAULT 0
-                );
-              `)
+            await db.execAsync(`
+              CREATE TABLE IF NOT EXISTS list (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                item TEXT NOT NULL,
+                due TEXT,
+                isComplete INTEGER DEFAULT 0,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+              );
+            `);
           }}
           options={{useNewConnection: false}}
           >
@@ -30,7 +34,9 @@ export default function App() {
         <StatusBar hidden={true} />
         <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Completed" component={Completed} />
+          {/* <Stack.Screen name="Calendar" component={Calendar} /> */}
+          {/* <Stack.Screen name="Completed" component={Completed} /> */}
+          {/* <Stack.Screen name="Stats" component={Stats} /> */}
         </Stack.Navigator>
       </NavigationContainer>
    </SQLiteProvider>
