@@ -32,7 +32,7 @@ const List = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
             <View className="border border-gray-500 rounded  p-2 mt-1 w-[96%] ml-2">
-                
+               
                 <Text className="">{item.item}</Text>
             </View>
         )}

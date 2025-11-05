@@ -1,23 +1,18 @@
 import { useState } from "react";
 import { View, TextInput, Pressable, Text } from 'react-native'
 import { useSQLiteContext } from "expo-sqlite";
-import { useNavigation } from "@react-navigation/native";
 
 
-const AddItem = () => {
+
+const AddItem = ({onAdd}) => {
     const [ task, setTask ] = useState ('');
     const db = useSQLiteContext();
-    const navigation = useNavigation();
-
+   
     const handleSubmit = async () => {
         try {
-            await db.runAsync(
-                `INSERT INTO list (item) VALUES (?)`,
-                [task.item]
-            );
-    
+            await db.runAsync(`INSERT INTO list (item) VALUES (?)`, [task]);
             setTask('');
-            navigation.navigate("Home");
+            if (onAdd) onAdd();
             
         } catch (error) {
             console.error("Error on INSERT attempt", error )
@@ -27,8 +22,8 @@ const AddItem = () => {
         <View className="w-[100%] items-center font-bold p-2 flex-row">
             <TextInput className="border m-2 rounded-md w-3/4"
             placeholder="Add Task Item"
-            value={task.item}
-            onChangeText={(text) => setTask({ item: text})}
+            value={task}
+            onChangeText={ setTask }
             ></TextInput>
 
 
