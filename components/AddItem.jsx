@@ -30,14 +30,14 @@ const AddItem = ({ onAdded }) => {
         }
     }
     return (
-        <View className="w-[100%] items-center justify-between font-bold p-2 flex-row flex-wrap">
-            <TextInput className="m-2 pl-4 border border-gray-400 rounded-md w-4/5 bg-white"
+        <View className="w-[100%] items-center justify-between font-bold p-2 flex-row flex-wrap bg-gray-800 shadow-md">
+            <TextInput className="pl-4 border border-gray-300 rounded-md w-[85%] bg-white"
             placeholder="Add Task Item"
             value={task}
             onChangeText={ setTask }
             ></TextInput>
 
-            <Pressable onPress={handleSubmit} className="px-2 py-2 mr-1 rounded-full bg-black shadow-md">
+            <Pressable onPress={handleSubmit} className="px-2 py-2 mr-1 rounded-full bg-gray-800 border-4 border-white shadow-md">
                 <Ionicons name="add" color="white" size={20}/>
             </Pressable>
         </View>

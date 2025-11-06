@@ -6,7 +6,7 @@ const RadioButton = ({ isChecked, onToggle }) => {
         <Pressable onPress={onToggle}>
             <View
                 className={` border p-1.5 rounded-full ${
-                isChecked ? 'bg-orange-200 border-black' : 'bg-white border-black'
+                isChecked ? 'bg-white border-black/30' : 'bg-gray-800 border-black/5'
                 }`}
             />
 
