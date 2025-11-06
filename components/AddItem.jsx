@@ -16,19 +16,16 @@ const AddItem = ({ onAdded }) => {
         // Optional: show message or vibration
         console.log("Input is empty");
         return;
-  }
+        }
         try {
             await db.runAsync(`INSERT INTO list (item) VALUES (?)`, [task]);
             setTask('');
             onAdded && onAdded();
-            
-        
-       
-            
         } catch (error) {
             console.error("Error on INSERT attempt", error )
         }
     }
+
     return (
         <View className="w-[100%] items-center justify-between font-bold p-2 flex-row flex-wrap bg-gray-800 shadow-md">
             <TextInput className="pl-4 border border-gray-300 rounded-md w-[85%] bg-white"
@@ -43,6 +40,4 @@ const AddItem = ({ onAdded }) => {
         </View>
     )
 }
-
-
 export default AddItem;

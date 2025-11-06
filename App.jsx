@@ -5,9 +5,6 @@ import { StatusBar } from "expo-status-bar";
 import { Provider as PaperProvider } from "react-native-paper";
 
 import Home from "./pages/Home";
-import Completed from "./pages/Completed";
-import Calendar from "./pages/Calendar";
-import Stats from "./pages/Stats";
 import List from "./components/ListFetch";
 import About from "./pages/About";
 
@@ -34,11 +31,11 @@ export default function App() {
       <PaperProvider>
         <NavigationContainer>
           <StatusBar hidden={true} />
-          <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+          <Stack.Navigator initialRouteName="About" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Calendar" component={Calendar} />
-            <Stack.Screen name="Completed" component={Completed} />
-            <Stack.Screen name="Stats" component={Stats} />
+            {/* <Stack.Screen name="Calendar" component={Calendar} /> */}
+            {/* <Stack.Screen name="Completed" component={Completed} /> */}
+            {/* <Stack.Screen name="Stats" component={Stats} /> */}
             <Stack.Screen name="About" component={About} />
           </Stack.Navigator>
         </NavigationContainer>

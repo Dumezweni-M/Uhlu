@@ -59,17 +59,19 @@ const List = ({refresh}) => {
                     }}
                     />
         
-                    <Text className={` ${item.isComplete === 1 ? 'font-normal line-through text-gray-500' : 'font-normal'}`}>
+                    <Text className={` ${item.isComplete === 1 ? 'font-normal line-through text-gray-500 ' : 'font-normal w-[80%]'}`}>
                         {item.item}
                     </Text>
-                    <Text className={` ${item.isComplete === 1 ? 'font-normal line-through text-gray-500' : 'font-normal'}`}>
+                    <Text className={` ${item.isComplete === 1 ? 'font-normal line-through text-gray-500' : 'font-normal '}`}>
                         {item.due}
                     </Text>
                 </View>
-        
+                
+                <View className="flex-row gap-6">
+
                 {/* Trash icon for deletion */}
                 <Ionicons
-                    name="trash"
+                    name="trash-outline"
                     color="black"
                     size={18}
                     onPress={async () => {
@@ -81,6 +83,7 @@ const List = ({refresh}) => {
                     }
                     }}
                 />
+                </View>
                 </View>
             )}
             ListEmptyComponent={

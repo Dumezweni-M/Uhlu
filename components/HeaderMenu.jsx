@@ -10,7 +10,7 @@ const HeaderMenu = ( ) => {
 
   return (
     <View>
-      <Menu
+      <Menu className=""
         visible={visible}
         onDismiss={() => setVisible(false)}
         anchor={
@@ -21,12 +21,20 @@ const HeaderMenu = ( ) => {
             onPress={() => setVisible(true)}
           />
         }
+          contentStyle={{
+          backgroundColor: "white",
+          borderRadius: 10,             
+          paddingVertical: 4,           
+          elevation: 4,                 
+        }}
       >
-        <Menu.Item title="Refresh" leadingIcon="refresh" onPress={() => navigation.navigate("Home")} />
-        <Divider />
-        <Menu.Item title="Settings" leadingIcon="cog" onPress={() => navigation.navigate("About")} />
-        <Divider />
-        <Menu.Item title="About" leadingIcon="information" onPress={() => navigation.navigate("About")} />
+        {/* <Divider /> */}
+        <Menu.Item 
+          title="Home"
+          leadingIcon="home" onPress={() => navigation.navigate("Home")} />
+        <Menu.Item 
+          title="About"
+          leadingIcon="information" onPress={() => navigation.navigate("About")} />
       </Menu>
     </View>
   );

@@ -1,56 +1,31 @@
+import { Divider } from "react-native-paper";
 import PageWrapper from "../components/PageWrapper";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 const About = ({ navigation }) => {
     return (
         <PageWrapper>
-            <View className="flex-1 h-[94%] border justify-between">
-
-                <Text className="text-lg font-bold my-1 mx-3">Why Uhlu?</Text> 
-
-               <Text className=" w-2/3 border p-2 my-1 mx-3 text-md rounded">
-                    Uhlu comes from the Zulu word for "list" — Simple, calm, and intentional. 
-                    This app is built to bring clarity, not overwhelm.
-               </Text>
-
-                <Text className="border p-2 my-1 mx-3 text-md rounded wrap"> 
-                Most task apps are loud, busy, thus requiring time and effort to 
-                maintain. Uhlu keeps your tasks simple, personal. 
-                Just the things that matter — no clutter.
+            <View className="flex-1 px-4 justify-center">
+                <Text className="py-2 text-3xl font-bold my-2 px-2 text-blue-500">Uhlu [oo-shl-oo]</Text>
+                <Text className="py-2 text-lg font-bold my-2 px-2">From isiZulu, meaning “to name, to list, to record.” A quiet way of keeping order.</Text>
+                <Divider/>
+                <Divider/>
+                <Text className="py-2 text-lg my-2 px-2">
+                    This App is purely a passion project.
+                    I created it because I wanted something simple to use on a daily basis.
+                    I have more features planned and will soon setup communication channels
+                    so we can all chip in on how we can improve the app.
                 </Text>
-
-                <View className="flex w-full p-4 gap-2 items-center justify-center">
-                    <View className="border w-2/3 rounded p-2 shadow-md">
-                        <Text className="text-xl font-bold my-1 mx-3">Core Ideas</Text> 
-                        <Text className="mx-3 text-md rounded">• Slow living productivity</Text>
-                        <Text className="mx-3 text-md rounded">• Progress through consistency</Text>
-                        <Text className="mx-3 text-md rounded">• Calm design, clear focus</Text>
-                    </View>
-                    <View className="border w-2/3 rounded p-2 shadow-md">
-                        <Text className="text-xl font-bold my-1 mx-3">Current Features</Text> 
-                        <Text className="mx-3 text-md rounded">• Create and manage daily tasks</Text>
-                        <Text className="mx-3 text-md rounded">• Mark tasks as complete</Text>
-                        <Text className="mx-3 text-md rounded">• View completed progress separately</Text>
-                    </View>
-                    <View className="border w-2/3 rounded p-2 shadow-md">
-                        <Text className="text-xl font-bold my-1 mx-3">Future Plans</Text> 
-                        <Text className=" mx-3 text-md rounded">• Weekly reflection</Text>
-                        <Text className=" mx-3 text-md rounded">• Gentle reminders</Text>
-                        <Text className=" mx-3 text-md rounded">• Light personalization & themes</Text>
-                        <Text className=" mx-3 text-md rounded">• Speech to Text</Text>
-                    </View>
-                </View>
-
-                <Text className="border p-2 my-1 mx-3 text-md rounded">
-                Version: 1.0.0
+                
+                <Divider/> 
+                <Text className="py-2 text-lg my-2 px-2">
+                    Privacy Policy: None of your personal data is collected or shared.
+                    All your data is stored locally on your device
                 </Text>
-
-
-
-
-              
-   
-
+                <Divider/> 
+                <Divider/> 
+                <Text className="py-2 text-lg my-2 px-2">Version: v1.0.0 © 2025 eZweni Aether</Text>
+                <Text className="py-2 text-lg font-bold my-2 px-2">Thank you for using Uhlu.</Text>
             </View>
         </PageWrapper>
     )
