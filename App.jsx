@@ -34,7 +34,7 @@ export default function App() {
       <PaperProvider>
         <NavigationContainer>
           <StatusBar hidden={true} />
-          <Stack.Navigator initialRouteName="About" screenOptions={{ headerShown: false }}>
+          <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Calendar" component={Calendar} />
             <Stack.Screen name="Completed" component={Completed} />

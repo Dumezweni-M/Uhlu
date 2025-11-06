@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 
 
 
-const AddItem = ({onAdd}) => {
+const AddItem = ({ onAdded }) => {
     const [ task, setTask ] = useState ('');
     const db = useSQLiteContext();
     const navigation = useNavigation();
@@ -20,6 +20,7 @@ const AddItem = ({onAdd}) => {
         try {
             await db.runAsync(`INSERT INTO list (item) VALUES (?)`, [task]);
             setTask('');
+            onAdded && onAdded();
             
         
        

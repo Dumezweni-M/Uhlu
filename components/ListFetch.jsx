@@ -7,7 +7,7 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 import RadioButton from "./RadioButton";
 
 
-const List = () => {
+const List = ({refresh}) => {
     const [ list, setList] = useState([]);
     const db = useSQLiteContext(); 
 
@@ -23,11 +23,15 @@ const List = () => {
     const sortedList = list.sort((a, b) => a.isComplete - b.isComplete);
 
 
-  useFocusEffect(
-    useCallback(() => {
-      LoadList();
-    }, [])
-  );
+//   useFocusEffect(
+//     useCallback(() => {
+//       LoadList();
+//     }, [])
+//   );
+
+  useEffect(() => {
+    LoadList()
+  }, [refresh]);
 
     return (
         

@@ -1,5 +1,5 @@
 // app-pages/Home.jsx
-import React from "react";
+import React, { useCallback } from "react";
 import { View, Text, Pressable } from "react-native";
 import { useState, useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
@@ -9,11 +9,16 @@ import List from "../components/ListFetch";
 
 
 const Home = ({ navigation }) => {
+    const [ refreshFlag, setRefrehFlag ] = useState(false);
+
+    const triggerRefesh = useCallback(() => {
+        setRefrehFlag((prev) => !prev);
+    }, [])
 
     return (
         <PageWrapper>
-                <AddItem/>
-                <List/>
+                <AddItem onAdded={triggerRefesh} />
+                <List refresh={refreshFlag} />
         </PageWrapper>
     )
 }
