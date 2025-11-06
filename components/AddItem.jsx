@@ -12,10 +12,15 @@ const AddItem = ({onAdd}) => {
     const navigation = useNavigation();
 
     const handleSubmit = async () => {
+        if (!task.trim()) {
+        // Optional: show message or vibration
+        console.log("Input is empty");
+        return;
+  }
         try {
             await db.runAsync(`INSERT INTO list (item) VALUES (?)`, [task]);
             setTask('');
-            if (onAdd) onAdd();
+            
         
        
             

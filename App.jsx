@@ -2,12 +2,14 @@ import { useSQLiteContext, SQLiteProvider } from "expo-sqlite";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
+import { Provider as PaperProvider } from "react-native-paper";
 
 import Home from "./pages/Home";
 import Completed from "./pages/Completed";
 import Calendar from "./pages/Calendar";
 import Stats from "./pages/Stats";
 import List from "./components/ListFetch";
+import About from "./pages/About";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,16 +31,18 @@ export default function App() {
           }}
           options={{useNewConnection: false}}
           >
-
-      <NavigationContainer>
-        <StatusBar hidden={true} />
-        <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Home" component={Home} />
-          {/* <Stack.Screen name="Calendar" component={Calendar} /> */}
-          {/* <Stack.Screen name="Completed" component={Completed} /> */}
-          {/* <Stack.Screen name="Stats" component={Stats} /> */}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PaperProvider>
+        <NavigationContainer>
+          <StatusBar hidden={true} />
+          <Stack.Navigator initialRouteName="About" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Calendar" component={Calendar} />
+            <Stack.Screen name="Completed" component={Completed} />
+            <Stack.Screen name="Stats" component={Stats} />
+            <Stack.Screen name="About" component={About} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
    </SQLiteProvider>
   );
 }
