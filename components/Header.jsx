@@ -1,11 +1,18 @@
 import Ionicons from "@react-native-vector-icons/ionicons";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, ImageBackground } from "react-native";
 import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {
     return (
-        <View className="border-b border-gray-400 p-2 flex-row justify-between">
-            <Text className="font-bold text-4xl">[ Uhlu ]</Text>
+        <View className="p-2 mb-2 flex-row items-center justify-between">
+            <View className="flex-row w-1/3 h-full">
+                <ImageBackground
+                    source={require("../assets/Uhlu-logo.png")}
+                    style={{ flex: 1, width: "100%", height: "100%", padding: "1%" }}
+                    resizeMode="fill"
+                ></ImageBackground>
+                <Text className=" text-4xl "> Uhlu</Text>
+            </View>
             <HeaderMenu/>
         </View>
     )

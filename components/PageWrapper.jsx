@@ -8,6 +8,7 @@ const PageWrapper = ({children}) => {
         <View className="flex-1 w-full h-full pt-8 pb-12">
             <View className="flex-1">
                 <Header/>
+            
                 { children }
             </View>
         </View>

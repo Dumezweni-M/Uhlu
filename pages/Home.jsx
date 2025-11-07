@@ -1,6 +1,6 @@
 // app-pages/Home.jsx
 import React, { useCallback } from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, ImageBackground } from "react-native";
 import { useState, useEffect } from "react";
 import { useSQLiteContext } from "expo-sqlite";
 import PageWrapper from "../components/PageWrapper";
@@ -15,11 +15,17 @@ const Home = ({ navigation }) => {
         setRefrehFlag((prev) => !prev);
     }, [])
 
-    return (
+    return (    
+    //     <ImageBackground
+    //   source={require("../assets/alexander-tsang-qcoHZzJAdhM-unsplash.jpg")}
+    //   style={{ flex: 1, width: "100%", height: "100%" }}
+    //   resizeMode="cover"
+    // >
         <PageWrapper>
                 <AddItem onAdded={triggerRefesh} />
                 <List refresh={refreshFlag} />
         </PageWrapper>
+        // </ImageBackground>
     )
 }
 

@@ -10,13 +10,14 @@ const HeaderMenu = ( ) => {
 
   return (
     <View>
-      <Menu className=""
+      <Menu 
         visible={visible}
         onDismiss={() => setVisible(false)}
         anchor={
           <Ionicons
             name="ellipsis-horizontal"
             size={20}
+            color="black"
             style={{ marginRight: 12 }}
             onPress={() => setVisible(true)}
           />

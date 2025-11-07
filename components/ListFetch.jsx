@@ -40,8 +40,8 @@ const List = ({refresh}) => {
                     data={sortedList}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                    <View className="border-b border-gray-300 rounded py-2 px-3  w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
-                        <View className="flex-row space-x-4 items-center">
+                    <View className="border-b border-gray-300 rounded py-2 px-4  w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
+                        <View className="flex-row space-x-2 items-center">
         
                     {/* Radio button for isComplete */}
                     <RadioButton
@@ -58,16 +58,14 @@ const List = ({refresh}) => {
                         }
                     }}
                     />
-        
-                    <Text className={` ${item.isComplete === 1 ? 'font-normal line-through text-gray-500 ' : 'font-normal w-[80%]'}`}>
-                        {item.item}
-                    </Text>
-                    <Text className={` ${item.isComplete === 1 ? 'font-normal line-through text-gray-500' : 'font-normal '}`}>
-                        {item.due}
-                    </Text>
+                    <View className="w-[90%]">
+                        <Text className={` ${item.isComplete === 1 ? 'font-bold line-through text-gray-500 w-[80%] ' : 'font-bold w-[80%] text-gray-900'}`}>
+                            {item.item}
+                        </Text>
+                    </View>
                 </View>
                 
-                <View className="flex-row gap-6">
+                <View className="flex-row ">
 
                 {/* Trash icon for deletion */}
                 <Ionicons
