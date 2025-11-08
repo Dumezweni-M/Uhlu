@@ -6,6 +6,7 @@ import { useSQLiteContext } from "expo-sqlite";
 import PageWrapper from "../components/PageWrapper";
 import AddItem from "../components/AddItem";
 import List from "../components/ListFetch";
+import HeaderMenu from "../components/HeaderMenu";
 
 
 const Home = ({ navigation }) => {

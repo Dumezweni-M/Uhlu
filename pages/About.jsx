@@ -10,7 +10,7 @@ const About = ({ navigation }) => {
                                 <ImageBackground
                                     source={require("../assets/Uhlu-logo.png")}
                                     style={{  width: "100%", height: "80%" }}
-                                    resizeMode="cover"
+                                    resizeMode="contain"
                                 ></ImageBackground>
                             </View>
                 <Text className="py-2 text-3xl font-bold my-2 px-2 text-blue-500">Uhlu [oo-shl-oo]</Text>

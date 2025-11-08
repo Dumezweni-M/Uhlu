@@ -7,27 +7,20 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 import RadioButton from "./RadioButton";
 
 
-const List = ({refresh}) => {
+const ListCompleted = ({refresh}) => {
     const [ list, setList] = useState([]);
     const db = useSQLiteContext(); 
 
     const LoadList = async () => {
         try {
-            const results = await db.getAllAsync(`SELECT * FROM list WHERE isComplete = 0 ORDER BY createdAt DESC`);
+            const results = await db.getAllAsync(`SELECT * FROM list WHERE isComplete = 1`);
             setList(results);
         } catch (error){
             console.error("Couldnt Fetch List", error)
         }
     }
 
-
-
-
-//   useFocusEffect(
-//     useCallback(() => {
-//       LoadList();
-//     }, [])
-//   );
+    const sortedList = list.sort((a, b) => a.isComplete - b.isComplete);
 
   useEffect(() => {
     LoadList()
@@ -37,7 +30,7 @@ const List = ({refresh}) => {
         
         <>
                     <FlashList
-                    data={list}
+                    data={sortedList}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
                     <View className="border-b border-gray-300 rounded py-2 px-4  w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
@@ -95,4 +88,4 @@ const List = ({refresh}) => {
     );
 };
 
-export default List;
+export default ListCompleted;

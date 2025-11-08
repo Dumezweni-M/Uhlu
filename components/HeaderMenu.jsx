@@ -15,24 +15,32 @@ const HeaderMenu = ( ) => {
         onDismiss={() => setVisible(false)}
         anchor={
           <Ionicons
-            name="ellipsis-horizontal"
-            size={20}
+            name="menu"
+            size={26}
             color="black"
-            style={{ marginRight: 12 }}
+            style={{ marginRight: 10 }}
             onPress={() => setVisible(true)}
           />
         }
           contentStyle={{
           backgroundColor: "white",
-          borderRadius: 10,             
-          paddingVertical: 4,           
-          elevation: 4,                 
+          borderRadius: 2,             
+          paddingVertical: 0,           
+          elevation: 3,
+          color: "white"                 
         }}
       >
         {/* <Divider /> */}
         <Menu.Item 
+        
           title="Home"
           leadingIcon="home" onPress={() => navigation.navigate("Home")} />
+          
+        <Divider />
+        <Menu.Item 
+          title="Complete"
+          leadingIcon="information" onPress={() => navigation.navigate("Completed")} />
+        <Divider />
         <Menu.Item 
           title="About"
           leadingIcon="information" onPress={() => navigation.navigate("About")} />

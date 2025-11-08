@@ -8,6 +8,11 @@ import { Provider as PaperProvider } from "react-native-paper";
 import Home from "./pages/Home";
 import List from "./components/ListFetch";
 import About from "./pages/About";
+import SplashSrcn from "./pages/Splash";
+import Completed from "./pages/Completed";
+
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -34,9 +39,8 @@ export default function App() {
           <StatusBar hidden={true} />
           <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Home" component={Home} />
-            {/* <Stack.Screen name="Calendar" component={Calendar} /> */}
-            {/* <Stack.Screen name="Completed" component={Completed} /> */}
-            {/* <Stack.Screen name="Stats" component={Stats} /> */}
+            <Stack.Screen name="Completed" component={Completed} />
+            <Stack.Screen name="SplashScrn" component={SplashSrcn} />
             <Stack.Screen name="About" component={About} />
           </Stack.Navigator>
         </NavigationContainer>
