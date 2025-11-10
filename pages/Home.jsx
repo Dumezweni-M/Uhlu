@@ -7,6 +7,7 @@ import PageWrapper from "../components/PageWrapper";
 import AddItem from "../components/AddItem";
 import List from "../components/ListFetch";
 import HeaderMenu from "../components/HeaderMenu";
+import Tabs from "../components/Tabs";
 
 
 const Home = ({ navigation }) => {
@@ -25,6 +26,7 @@ const Home = ({ navigation }) => {
         <PageWrapper>
                 <AddItem onAdded={triggerRefesh} />
                 <List refresh={refreshFlag} />
+                <Tabs/>
         </PageWrapper>
         // </ImageBackground>
     )

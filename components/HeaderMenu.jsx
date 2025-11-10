@@ -30,20 +30,13 @@ const HeaderMenu = ( ) => {
           color: "white"                 
         }}
       >
-        {/* <Divider /> */}
-        <Menu.Item 
-        
-          title="Home"
-          leadingIcon="home" onPress={() => navigation.navigate("Home")} />
-          
+
+      {/* <Divider /> */}
+      <Menu.Item title="Home" leadingIcon="home" onPress={() => navigation.navigate("Home")} />
         <Divider />
-        <Menu.Item 
-          title="Complete"
-          leadingIcon="information" onPress={() => navigation.navigate("Completed")} />
+        <Menu.Item title="Complete" leadingIcon="information" onPress={() => navigation.navigate("Completed")} />
         <Divider />
-        <Menu.Item 
-          title="About"
-          leadingIcon="information" onPress={() => navigation.navigate("About")} />
+        <Menu.Item title="About" leadingIcon="information" onPress={() => navigation.navigate("About")} />
       </Menu>
     </View>
   );

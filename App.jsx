@@ -10,6 +10,7 @@ import List from "./components/ListFetch";
 import About from "./pages/About";
 import SplashSrcn from "./pages/Splash";
 import Completed from "./pages/Completed";
+import Tabs from "./components/Tabs";
 
 
 
