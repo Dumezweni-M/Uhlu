@@ -11,6 +11,7 @@ import About from "./pages/About";
 import SplashSrcn from "./pages/Splash";
 import Completed from "./pages/Completed";
 import Tabs from "./components/Tabs";
+import Stats from "./pages/Stats";
 
 
 
@@ -43,6 +44,7 @@ export default function App() {
             <Stack.Screen name="Completed" component={Completed} />
             <Stack.Screen name="SplashScrn" component={SplashSrcn} />
             <Stack.Screen name="About" component={About} />
+            <Stack.Screen name="Stats" component={Stats} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>

@@ -1,6 +1,7 @@
 import { Divider } from "react-native-paper";
 import PageWrapper from "../components/PageWrapper";
 import { Pressable, Text, View, ImageBackground } from "react-native";
+import Tabs from "../components/Tabs";
 
 const About = ({ navigation }) => {
     return (
@@ -34,6 +35,7 @@ const About = ({ navigation }) => {
                 <Text className="py-2 text-lg my-2 px-2">Version: v1.0.0 © 2025 eZweni Aether</Text>
                 <Text className="py-2 text-lg font-bold my-2 px-2">Thank you for using Uhlu.</Text>
             </View>
+            <Tabs/>
         </PageWrapper>
     )
 }

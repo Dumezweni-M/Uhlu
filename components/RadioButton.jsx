@@ -9,7 +9,6 @@ const RadioButton = ({ isChecked, onToggle }) => {
                 isChecked ? 'bg-white border-black/30' : 'bg-blue-400 border-black/5'
                 }`}
             />
-
         </Pressable>
     )
 }
