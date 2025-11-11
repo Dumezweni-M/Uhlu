@@ -9,7 +9,7 @@ const PageWrapper = ({children}) => {
         <SafeAreaView className="flex-1 w-full h-full rounded-full">
             <KeyboardAvoidingView className="flex-1" behavior={Platform.OS === "ios" ? "padding" : "height" }>
                 <View className="flex-1">
-                    <Header/>
+                    {/* <Header/> */}
                     { children }
                 </View>
             </KeyboardAvoidingView>

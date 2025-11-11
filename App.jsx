@@ -12,6 +12,8 @@ import SplashSrcn from "./pages/Splash";
 import Completed from "./pages/Completed";
 import Tabs from "./components/Tabs";
 import Stats from "./pages/Stats";
+import Work from "./pages/Work";
+import ModalView from "./components/Modal";
 
 
 
@@ -23,19 +25,29 @@ export default function App() {
   return (
        <SQLiteProvider
           databaseName="Uhlu.db"
-          onInit={ async (db) => {
+            onInit={async (db) => {
             await db.execAsync(`
               CREATE TABLE IF NOT EXISTS list (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 item TEXT NOT NULL,
                 due TEXT,
+                category TEXT,
                 isComplete INTEGER DEFAULT 0,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
               );
             `);
+
+            // Migration for existing installs
+            try {
+              await db.execAsync(`ALTER TABLE list ADD COLUMN category TEXT;`);
+            } catch (err) {
+              // Column probably already exists — safe to ignore
+            }
+
           }}
-          options={{useNewConnection: false}}
-          >
+          options={{ useNewConnection: false }}
+        >
+
       <PaperProvider>
         <NavigationContainer>
           <StatusBar hidden={true} />
@@ -45,6 +57,8 @@ export default function App() {
             <Stack.Screen name="SplashScrn" component={SplashSrcn} />
             <Stack.Screen name="About" component={About} />
             <Stack.Screen name="Stats" component={Stats} />
+            <Stack.Screen name="Work" component={Work} />
+            <Stack.Screen name="ModalView" component={ModalView}/>
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>

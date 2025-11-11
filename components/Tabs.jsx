@@ -9,29 +9,32 @@ const Tabs = ( ) => {
         <View className="flex-row justify-evenly items-center gap-x-1 px-2 scroll w-full pt-2 pb-2 bg-white">
 
 
-            <Pressable onPress={() => navigation.navigate("Home")} className="border p-2 rounded bg-white items-center justify-center">
-                <Ionicons name="home-outline" size={20}/>
+            <Pressable onPress={() => navigation.navigate("Home")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
+                    <Ionicons name="list-outline" size={20}/>
+                    <Text>All</Text>
             </Pressable>
 
-            <Pressable onPress={() => navigation.navigate("Home")} className="border p-2 rounded bg-white items-center justify-center">
+            <Pressable onPress={() => navigation.navigate("Home")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
+                <Ionicons name="repeat-outline" size={20}/>
+                <Text>Daily</Text>
+            </Pressable>
+
+            <Pressable onPress={() => navigation.navigate("Home")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
                     <Ionicons name="cart-outline" size={20}/>
+                    <Text>Home</Text>
             </Pressable>
 
-            <Pressable onPress={() => navigation.navigate("Completed")} className="border  p-2 rounded bg-white items-center justify-center">
-                <Ionicons name="checkmark" size={20}/>
+            <Pressable onPress={() => navigation.navigate("Work")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
+                    <Ionicons name="briefcase-outline" size={20}/>
+                    <Text>Work</Text>
             </Pressable>
 
-            <Pressable onPress={() => navigation.navigate("Stats")} className="border p-2 rounded bg-white items-center justify-center">
-                    <Ionicons name="stats-chart" size={20}/>
+            <Pressable onPress={() => navigation.navigate("Completed")} className="w-1/6 border  p-1 rounded bg-white items-center justify-center">
+                    <Ionicons name="checkmark" size={20}/>
+                    <Text>Done</Text>
             </Pressable>
 
-            <Pressable onPress={() => navigation.navigate("About")} className="border p-2 rounded bg-white items-center justify-center">
-                    <Ionicons name="information" size={20}/>
-            </Pressable>
 
-            <Pressable onPress={() => navigation.navigate("Home")} className="border p-2 rounded bg-white items-center justify-center">
-                    <Ionicons name="settings-outline" size={20}/>
-            </Pressable>
 
         </View>
     )
