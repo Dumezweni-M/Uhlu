@@ -6,7 +6,7 @@ import Header from "../components/Header"
 
 const PageWrapper = ({children}) => {
     return (
-        <SafeAreaView className="flex-1 w-full h-full rounded-full">
+        <SafeAreaView className="flex-1 w-full h-full bg-white">
             <KeyboardAvoidingView className="flex-1" behavior={Platform.OS === "ios" ? "padding" : "height" }>
                 <View className="flex-1">
                     {/* <Header/> */}

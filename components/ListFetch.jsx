@@ -53,7 +53,7 @@ const List = ({refresh}) => {
                         <Text className={` ${item.isComplete === 1 ? 'font-bold line-through text-gray-500 w-[80%] ' : 'font-bold w-[80%] text-gray-900'}`}>
                             {item.item}
                         </Text>
-                        <Text className={` ${item.isComplete === 1 ? 'font-bold line-through text-gray-500 w-[80%] ' : 'bg-gray-200 rounded border border-gray-300 px-1 m-1 w-[15%] text-center '}`}>
+                        <Text className={` ${item.isComplete === 1 ? 'font-bold line-through text-gray-500 w-[80%] ' : 'bg-gray-200 rounded border border-gray-300 w-[15%] text-center '}`}>
                             {item.category}
                         </Text>
                     </View>

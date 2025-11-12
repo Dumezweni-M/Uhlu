@@ -35,8 +35,8 @@ const Home = ({ navigation }) => {
                 <AddItem onAdded={triggerRefesh} />
                 <List refresh={refreshFlag} />
 
-                {/* Enter Items to List */}
-                <Pressable title="Toggle" onPress={toggleModal} className="border bg-gray-600 p-4 rounded mb-4 mx-40 " >
+                {/* Toggle Modal List */}
+                <Pressable title="Toggle" onPress={toggleModal} className="bg-sky-600 p-3 rounded-full bottom-[9%] right-[43.5%]  absolute shadow-lg" >
                     <Ionicons name="add" size={30} color="white"/>
                 </Pressable>
 

@@ -31,7 +31,7 @@ const AddItem = ({ onAdded }) => {
     }
 
     return (
-            <View className="w-[100%] items-center justify-between font-bold p-2 mb-1 flex-row flex-wrap shadow-md bg-gray-800">
+            <View className="w-[100%] items-center justify-between font-bold p-2 mb-1 flex-row flex-wrap shadow-md bg-gray-400">
                 <TextInput className="pl-4 border border-gray-300 rounded-md w-[85%] bg-white"
                 placeholder="Add Task Item"
                 value={task}
