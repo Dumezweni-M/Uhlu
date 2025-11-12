@@ -11,7 +11,7 @@ const CategorySelector = ({ selectedCategory, setSelectedCategory }) => {
         <Pressable
           key={cat}
           onPress={() => setSelectedCategory(cat)}
-          className={`px-4 py-2 mr-2 mb-2 rounded-full border ${
+          className={`px-4 py-2 mr-2 mb-2 rounded border ${
             selectedCategory === cat
               ? "bg-gray-500 border-gray-500"
               : "bg-white border-gray-400"

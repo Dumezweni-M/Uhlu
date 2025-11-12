@@ -9,6 +9,7 @@ import List from "../components/ListFetch";
 import Tabs from "../components/Tabs";
 import ModalView from "../components/Modal";
 import Ionicons from "@react-native-vector-icons/ionicons";
+import Header from "../components/Header";
 
 
 const AllTasks = ({ navigation }) => {
@@ -31,19 +32,22 @@ const AllTasks = ({ navigation }) => {
     //   resizeMode="cover"
     // >
         <PageWrapper>
-                <View className="border-b border-gray-400 px-6 pt-4 mb-4 w-[50%]">
-                    <Text className="text-xl text-gray-500 font-bold">Overview</Text>
+            <Header/>
+                <View className="border-b border-gray-400 px-4 pt-2 pb-2 mb-4 w-[100%] flex-row items-center">
+                    <Ionicons name="eye-outline" size={30} color="black"/>
+                    <Text className="ml-2 text-2xl text-gray-500 font-bold">Overview</Text>
                 </View>
                 {/* <AddItem onAdded={triggerRefesh} /> */}
                 <List refresh={refreshFlag} />
 
-                {/* Toggle Modal List */}
-                <Pressable title="Toggle" onPress={toggleModal} className="bg-sky-600 p-3 rounded-full bottom-[9%] right-[43.5%]  absolute shadow-lg" >
+                {/* Toggle Modal View*/}
+                <Pressable title="Toggle" onPress={toggleModal} className="bg-black p-2 rounded-full bottom-[9%] right-[44%]  absolute shadow-lg" >
                     <Ionicons name="add" size={30} color="white"/>
                 </Pressable>
 
                 {/* Quick Navigation Tabs */}
                 <Tabs/>
+
                 <ModalView visible={showModal} onClose={toggleModal}/>
         </PageWrapper>
         // </ImageBackground>

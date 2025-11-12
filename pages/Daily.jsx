@@ -7,6 +7,7 @@ import RadioButton from "../components/RadioButton";
 import PageWrapper from "../components/PageWrapper";
 import Tabs from "../components/Tabs";
 import AddItem from "../components/AddItem";
+import Header from "../components/Header";
 
 
 const Daily = ({refresh}) => {
@@ -35,8 +36,11 @@ const Daily = ({refresh}) => {
     return (
         
         <PageWrapper>
-                <View className="border-b border-gray-400 px-6 pt-4 mb-4 w-[50%]">
-                    <Text className="text-xl text-gray-500 font-bold">Daily</Text>
+            <Header/>
+            <AddItem onAdded={triggerRefesh} />
+                <View className="border-b border-gray-400 px-4 pt-2 pb-2 mb-4 w-[100%] flex-row items-center">
+                    <Ionicons name="repeat-outline" size={30} color="black"/>
+                    <Text className="ml-2 text-2xl text-gray-500 font-bold">Daily</Text>
                 </View>
                     <FlashList
                     data={sortedList}
@@ -92,7 +96,7 @@ const Daily = ({refresh}) => {
                 </View>
             }
             />
-            <AddItem onAdded={triggerRefesh} />
+            
             <Tabs/>
         </PageWrapper>
                 

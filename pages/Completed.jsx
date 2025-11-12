@@ -6,6 +6,7 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 import RadioButton from "../components/RadioButton";
 import PageWrapper from "../components/PageWrapper";
 import Tabs from "../components/Tabs";
+import Header from "../components/Header";
 
 
 const ListCompleted = ({refresh}) => {
@@ -30,8 +31,9 @@ const ListCompleted = ({refresh}) => {
     return (
         
         <PageWrapper>
-                <View className="border-b border-gray-400 px-6 pt-4 mb-4 w-[50%]">
-                    <Text className="text-xl text-gray-500 font-bold">Completed Tasks</Text>
+            <Header/>
+                <View className="border-b border-gray-400 px-4 pt-2 pb-2 mb-4 w-[100%]">
+                    <Text className="text-2xl text-gray-500 font-bold">Completed</Text>
                 </View>
                     <FlashList
                     data={sortedList}

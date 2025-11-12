@@ -4,9 +4,9 @@ import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {
     return (
-        <View className="p-2 flex-row items-center justify-between">
+        <View className="p-1 flex-row items-center justify-between">
             <View className="flex-row w-1/3 h-full">
-                <Text className=" text-4xl "> Uhlu</Text>
+                <Text className=" text-4xl "></Text>
             </View>
                 <HeaderMenu/>
         </View>
