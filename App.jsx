@@ -9,11 +9,11 @@ import Home from "./pages/Home";
 import List from "./components/ListFetch";
 import About from "./pages/About";
 import SplashSrcn from "./pages/Splash";
-import Completed from "./pages/Completed";
-import Tabs from "./components/Tabs";
-import Stats from "./pages/Stats";
 import Work from "./pages/Work";
 import ModalView from "./components/Modal";
+import Completed from "./pages/Completed";
+import AllTasks from "./pages/AllTasks";
+import Daily from "./pages/Daily";
 
 
 
@@ -51,14 +51,16 @@ export default function App() {
       <PaperProvider>
         <NavigationContainer>
           <StatusBar hidden={true} />
-          <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+          <Stack.Navigator initialRouteName="AllTasks" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="AllTasks" component={AllTasks}/>
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Completed" component={Completed} />
             <Stack.Screen name="SplashScrn" component={SplashSrcn} />
             <Stack.Screen name="About" component={About} />
-            <Stack.Screen name="Stats" component={Stats} />
             <Stack.Screen name="Work" component={Work} />
             <Stack.Screen name="ModalView" component={ModalView}/>
+            <Stack.Screen name="Completed" component={Completed}/>
+            <Stack.Screen name="Daily" component={Daily}/>
+            
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>

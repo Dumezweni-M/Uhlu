@@ -2,18 +2,24 @@ import { useEffect, useState, useCallback } from "react";
 import { Pressable, Text, View } from "react-native";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { FlashList } from "@shopify/flash-list";
-import { useFocusEffect } from "@react-navigation/native";
 import Ionicons from "@react-native-vector-icons/ionicons";
-import RadioButton from "./RadioButton";
+import RadioButton from "../components/RadioButton";
+import PageWrapper from "../components/PageWrapper";
+import Tabs from "../components/Tabs";
+import AddItem from "../components/AddItem";
 
 
-const ListCompleted = ({refresh}) => {
+const Daily = ({refresh}) => {
     const [ list, setList] = useState([]);
-    const db = useSQLiteContext(); 
+    const db = useSQLiteContext();
+    const [ refreshFlag, setRefrehFlag ] = useState(false);
+    const triggerRefesh = useCallback(() => {
+        setRefrehFlag((prev) => !prev);
+    }, [])
 
     const LoadList = async () => {
         try {
-            const results = await db.getAllAsync(`SELECT * FROM list WHERE isComplete = 1`);
+            const results = await db.getAllAsync(`SELECT * FROM list WHERE category = "daily"`);
             setList(results);
         } catch (error){
             console.error("Couldnt Fetch List", error)
@@ -28,12 +34,15 @@ const ListCompleted = ({refresh}) => {
 
     return (
         
-        <>
+        <PageWrapper>
+                <View className="border-b border-gray-400 px-6 pt-4 mb-4 w-[50%]">
+                    <Text className="text-xl text-gray-500 font-bold">Daily</Text>
+                </View>
                     <FlashList
                     data={sortedList}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                    <View className="border-b border-gray-300 rounded py-2 px-4  w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
+                        <View className="border-b border-gray-300 rounded py-2 px-4  w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
                         <View className="flex-row space-x-2 items-center">
         
                     {/* Radio button for isComplete */}
@@ -41,13 +50,13 @@ const ListCompleted = ({refresh}) => {
                     isChecked={item.isComplete === 1} 
                     onToggle={async () => {
                         try {
-                        await db.runAsync(
-                            `UPDATE list SET isComplete = ? WHERE id = ?`,
-                            [item.isComplete === 1 ? 0 : 1, item.id]
-                        );
-                        LoadList();
+                            await db.runAsync(
+                                `UPDATE list SET isComplete = ? WHERE id = ?`,
+                                [item.isComplete === 1 ? 0 : 1, item.id]
+                            );
+                            LoadList();
                         } catch (err) {
-                        console.error('Failed to toggle task', err);
+                            console.error('Failed to toggle task', err);
                         }
                     }}
                     />
@@ -66,14 +75,14 @@ const ListCompleted = ({refresh}) => {
                     color="black"
                     size={18}
                     onPress={async () => {
-                    try {
-                        await db.runAsync(`DELETE FROM list WHERE id = ?`, [item.id]);
-                        LoadList(); // refresh after deletion
-                    } catch (err) {
-                        console.error('Failed to delete task', err);
-                    }
+                        try {
+                            await db.runAsync(`DELETE FROM list WHERE id = ?`, [item.id]);
+                            LoadList(); // refresh after deletion
+                        } catch (err) {
+                            console.error('Failed to delete task', err);
+                        }
                     }}
-                />
+                    />
                 </View>
                 </View>
             )}
@@ -83,9 +92,11 @@ const ListCompleted = ({refresh}) => {
                 </View>
             }
             />
-        </>
+            <AddItem onAdded={triggerRefesh} />
+            <Tabs/>
+        </PageWrapper>
                 
     );
 };
 
-export default ListCompleted;
+export default Daily;

@@ -9,12 +9,12 @@ const Tabs = ( ) => {
         <View className="flex-row justify-evenly items-center gap-x-1 px-2 scroll w-full pt-2 pb-2 bg-white">
 
 
-            <Pressable onPress={() => navigation.navigate("Home")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
+            <Pressable onPress={() => navigation.navigate("AllTasks")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
                     <Ionicons name="list-outline" size={20}/>
                     <Text>All</Text>
             </Pressable>
 
-            <Pressable onPress={() => navigation.navigate("Home")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
+            <Pressable onPress={() => navigation.navigate("Daily")} className="w-1/6 border p-1 rounded bg-white items-center justify-center">
                 <Ionicons name="repeat-outline" size={20}/>
                 <Text>Daily</Text>
             </Pressable>

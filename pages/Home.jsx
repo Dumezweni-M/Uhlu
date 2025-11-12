@@ -1,51 +1,103 @@
-// app-pages/Home.jsx
-import React, { useCallback } from "react";
-import { View, Text, Pressable, ImageBackground, Button } from "react-native";
-import { useState, useEffect } from "react";
-import { useSQLiteContext } from "expo-sqlite";
-import PageWrapper from "../components/PageWrapper";
-import AddItem from "../components/AddItem";
-import List from "../components/ListFetch";
-import HeaderMenu from "../components/HeaderMenu";
-import Tabs from "../components/Tabs";
-import ModalView from "../components/Modal";
+import { useEffect, useState, useCallback } from "react";
+import { Pressable, Text, View } from "react-native";
+import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
+import { FlashList } from "@shopify/flash-list";
 import Ionicons from "@react-native-vector-icons/ionicons";
+import RadioButton from "../components/RadioButton";
+import PageWrapper from "../components/PageWrapper";
+import Tabs from "../components/Tabs";
+import AddItem from "../components/AddItem";
 
 
-const Home = ({ navigation }) => {
+const Home = ({refresh}) => {
+    const [ list, setList] = useState([]);
+    const db = useSQLiteContext(); 
+    
     const [ refreshFlag, setRefrehFlag ] = useState(false);
-    const [ showModal, setShowModal ] = useState(false)
     const triggerRefesh = useCallback(() => {
         setRefrehFlag((prev) => !prev);
     }, [])
 
-    const toggleModal = (() => {
-        setShowModal(prev => !prev)
-    })
+    const LoadList = async () => {
+        try {
+            const results = await db.getAllAsync(`SELECT * FROM list WHERE category = "home"`);
+            setList(results);
+        } catch (error){
+            console.error("Couldnt Fetch List", error)
+        }
+    }
 
+    const sortedList = list.sort((a, b) => a.isComplete - b.isComplete);
 
+  useEffect(() => {
+    LoadList()
+  }, [refresh]);
 
-    return (    
-    //     <ImageBackground
-    //   source={require("../assets/alexander-tsang-qcoHZzJAdhM-unsplash.jpg")}
-    //   style={{ flex: 1, width: "100%", height: "100%" }}
-    //   resizeMode="cover"
-    // >
+    return (
+        
         <PageWrapper>
-                <AddItem onAdded={triggerRefesh} />
-                <List refresh={refreshFlag} />
+            <View className="border-b border-gray-400 px-6 pt-4 mb-4 w-[50%]">
+                <Text className="text-xl text-gray-500 font-bold">Household</Text>
+            </View>
+                    <FlashList
+                    data={sortedList}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <View className="border-b border-gray-300 rounded py-2 px-4  w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
+                        <View className="flex-row space-x-2 items-center">
+        
+                    {/* Radio button for isComplete */}
+                    <RadioButton
+                    isChecked={item.isComplete === 1} 
+                    onToggle={async () => {
+                        try {
+                            await db.runAsync(
+                                `UPDATE list SET isComplete = ? WHERE id = ?`,
+                                [item.isComplete === 1 ? 0 : 1, item.id]
+                            );
+                            LoadList();
+                        } catch (err) {
+                            console.error('Failed to toggle task', err);
+                        }
+                    }}
+                    />
+                    <View className="w-[90%]">
+                        <Text className={` ${item.isComplete === 1 ? 'font-bold line-through text-gray-500 w-[80%] ' : 'font-bold w-[80%] text-gray-900'}`}>
+                            {item.item}
+                        </Text>
+                    </View>
+                </View>
+                
+                <View className="flex-row ">
 
-                {/* Toggle Modal List */}
-                <Pressable title="Toggle" onPress={toggleModal} className="bg-sky-600 p-3 rounded-full bottom-[9%] right-[43.5%]  absolute shadow-lg" >
-                    <Ionicons name="add" size={30} color="white"/>
-                </Pressable>
-
-                {/* Quick Navigation Tabs */}
-                <Tabs/>
-                <ModalView visible={showModal} onClose={toggleModal}/>
+                {/* Trash icon for deletion */}
+                <Ionicons
+                    name="trash-outline"
+                    color="black"
+                    size={18}
+                    onPress={async () => {
+                        try {
+                            await db.runAsync(`DELETE FROM list WHERE id = ?`, [item.id]);
+                            LoadList(); // refresh after deletion
+                        } catch (err) {
+                            console.error('Failed to delete task', err);
+                        }
+                    }}
+                />
+                </View>
+                </View>
+            )}
+            ListEmptyComponent={
+                <View className="border m-2 flex items-center">
+                    <Text className="text-2xl text-gray-500 font-bold">No Items in List</Text>
+                </View>
+            }
+            />
+            <AddItem onAdded={triggerRefesh} />
+            <Tabs/>
         </PageWrapper>
-        // </ImageBackground>
-    )
-}
+                
+    );
+};
 
 export default Home;
