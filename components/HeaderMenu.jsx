@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Menu, Divider } from "react-native-paper";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { View } from "react-native";
@@ -9,7 +9,7 @@ const HeaderMenu = ( ) => {
     const navigation = useNavigation();
 
   return (
-    <View>
+    <View className="">
       <Menu 
         visible={visible}
         onDismiss={() => setVisible(false)}

@@ -13,10 +13,10 @@ import Header from "../components/Header";
 
 
 const AllTasks = ({ navigation }) => {
-    const [ refreshFlag, setRefrehFlag ] = useState(false);
+    const [ refreshFlag, setRefreshFlag ] = useState(false);
     const [ showModal, setShowModal ] = useState(false)
-    const triggerRefesh = useCallback(() => {
-        setRefrehFlag((prev) => !prev);
+    const triggerRefresh = useCallback(() => {
+        setRefreshFlag((prev) => !prev);
     }, [])
 
     const toggleModal = (() => {
@@ -33,11 +33,12 @@ const AllTasks = ({ navigation }) => {
     // >
         <PageWrapper>
             <Header/>
-                <View className="border-b border-gray-400 px-4 pt-2 pb-2 mb-4 w-[100%] flex-row items-center">
+                <View className="border-b border-gray-400 px-4 pt-2 pb-2 w-[100%] flex-row items-center bg-none">
                     <Ionicons name="eye-outline" size={30} color="black"/>
                     <Text className="ml-2 text-2xl text-gray-500 font-bold">Overview</Text>
                 </View>
-                {/* <AddItem onAdded={triggerRefesh} /> */}
+                
+                {/* Show all items list */}
                 <List refresh={refreshFlag} />
 
                 {/* Toggle Modal View*/}
@@ -48,7 +49,7 @@ const AllTasks = ({ navigation }) => {
                 {/* Quick Navigation Tabs */}
                 <Tabs/>
 
-                <ModalView visible={showModal} onClose={toggleModal}/>
+                <ModalView visible={showModal} onClose={toggleModal} triggerRefresh={triggerRefresh}/>
         </PageWrapper>
         // </ImageBackground>
     )

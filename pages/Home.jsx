@@ -33,7 +33,7 @@ const Home = ({refresh}) => {
 
   useEffect(() => {
     LoadList()
-  }, [refresh]);
+  }, [refresh, refreshFlag]);
 
     return (
         

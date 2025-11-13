@@ -31,7 +31,7 @@ const Work = ({refresh}) => {
 
   useEffect(() => {
     LoadList()
-  }, [refresh]);
+  }, [refresh, refreshFlag]);
 
     return (
         

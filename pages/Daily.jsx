@@ -31,7 +31,7 @@ const Daily = ({refresh}) => {
 
   useEffect(() => {
     LoadList()
-  }, [refresh]);
+  }, [refresh, refreshFlag]);
 
     return (
         

@@ -1,5 +1,5 @@
 // components/TaskModal.jsx
-import React, { useState } from "react";
+import { useState, useCallback } from "react";
 import { View, Text, TextInput, Pressable, Modal } from "react-native";
 import { useSQLiteContext } from "expo-sqlite";
 import CategorySelector from "./CategorySelector";
@@ -7,10 +7,11 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 
 
 
-const TaskModal = ({ visible, onClose, onAdded }) => {
+const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
   const [task, setTask] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const db = useSQLiteContext();
+
 
   const handleSubmit = async () => {
     if (!task) return;
@@ -22,6 +23,7 @@ const TaskModal = ({ visible, onClose, onAdded }) => {
       setTask("");
       setSelectedCategory(null);
       onAdded?.();
+      triggerRefresh?.();
       onClose?.();
     } catch (err) {
       console.error("Failed to add task", err);
