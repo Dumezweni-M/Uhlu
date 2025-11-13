@@ -8,6 +8,7 @@ import PageWrapper from "../components/PageWrapper";
 import Tabs from "../components/Tabs";
 import AddItem from "../components/AddItem";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 
 const Home = ({refresh}) => {
@@ -92,7 +93,7 @@ const Home = ({refresh}) => {
                 </View>
             )}
             ListEmptyComponent={
-                <View className="border m-2 flex items-center">
+                <View className="m-2 flex items-center">
                     <Text className="text-2xl text-gray-500 font-bold">No Items in List</Text>
                 </View>
             }

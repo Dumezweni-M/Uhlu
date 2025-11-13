@@ -32,11 +32,9 @@ const HeaderMenu = ( ) => {
       >
 
       {/* <Divider /> */}
-      <Menu.Item title="Home" leadingIcon="home" onPress={() => navigation.navigate("Home")} />
+        <Menu.Item title="About" leadingIcon="" onPress={() => navigation.navigate("About")} />
         <Divider />
-        <Menu.Item title="Complete" leadingIcon="information" onPress={() => navigation.navigate("Completed")} />
-        <Divider />
-        <Menu.Item title="About" leadingIcon="information" onPress={() => navigation.navigate("About")} />
+        <Menu.Item title="Settings" leadingIcon="" onPress={() => navigation.navigate("Home")} />
       </Menu>
     </View>
   );

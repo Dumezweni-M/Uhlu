@@ -50,10 +50,10 @@ const List = ({refresh}) => {
                     }}
                     />
                     <View className="w-[90%] flex-row">
-                        <Text className={` ${item.isComplete === 1 ? 'font-bold line-through text-gray-500 w-[80%] ' : 'font-bold w-[80%] text-gray-900'}`}>
+                        <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-500 w-[80%] ' : 'w-[80%] text-gray-900'}`}>
                             {item.item}
                         </Text>
-                        <Text className={` ${item.isComplete === 1 ? 'font-bold line-through text-gray-500 w-[80%] ' : 'rounded border border-gray-300 bg-white w-[12%] shadow-lg text-center '}`}>
+                        <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-500 w-[80%] ' : 'bg-gray-200 rounded border border-gray-300 w-[15%] max-h-5 ml-2 text-center '}`}>
                             {item.category}
                         </Text>
                     </View>

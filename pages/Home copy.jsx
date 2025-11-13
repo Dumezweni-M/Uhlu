@@ -1,4 +1,4 @@
-// app-pages/Home.jsx
+npx // app-pages/Home.jsx
 import React, { useCallback } from "react";
 import { View, Text, Pressable, ImageBackground, Button } from "react-native";
 import { useState, useEffect } from "react";
