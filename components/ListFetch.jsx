@@ -38,10 +38,10 @@ useEffect(() => {
                     data={list}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                    <View className="border-b border-gray-300 rounded py-2 px-2  w-[96%] mb-1 flex-row justify-between items-center bg-white">
+                    <View className="border-b border-gray-300 rounded py-2 px-2  w-[96%] mb-0.5 flex-row justify-between items-center bg-white">
                         <View className="flex-row space-x-2 items-center">
         
-                        <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-300 w-[80%] ' : 'border-gray-300 w-[10%] mr-1 max-h-5 text-gray-500  text-xs text-center '}`}>
+                        <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-300 w-[80%] ' : 'border-gray-300 w-[10%]  max-h-5 text-gray-500  text-xs text-center '}`}>
                             {item.category}
                         </Text>
                     {/* Radio button for isComplete */}
@@ -62,7 +62,7 @@ useEffect(() => {
 
                     <Pressable
                         onLongPress={() => onLongPressItem(item)}
-                        delayLongPress={700}
+                        delayLongPress={400}
                         className="w-[80%]">
                         <View className="flex-row">
                             <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-500 w-[80%] ' : 'w-[80%] text-gray-900'}`}>
