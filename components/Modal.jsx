@@ -35,10 +35,13 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
       <View className="flex-1 justify-center items-center bg-black/50 p-4">
         <View className="bg-white w-full px-6 py-12 rounded">
 
+          <Text className="text-lg text-gray-500 font-bold mb-2">Select category</Text>
           <CategorySelector
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />
+
+          <Text className="text-lg text-gray-500 font-bold mb-2">Enter list Item</Text>
           <TextInput
             placeholder="Task"
             value={task}

@@ -6,7 +6,7 @@ const CategorySelector = ({ selectedCategory, setSelectedCategory }) => {
 
   return (
     <View className="flex-row flex-wrap mb-4">
-        <Text className="w-full pb-2">Select Category</Text>
+        {/* <Text className="w-full pb-2">Select Category</Text> */}
       {categories.map((cat) => (
         <Pressable
           key={cat}

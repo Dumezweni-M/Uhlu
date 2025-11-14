@@ -7,7 +7,7 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 import RadioButton from "./RadioButton";
 
 
-const List = ({refresh}) => {
+const List = ({refresh, onLongPressItem}) => {
     const [ list, setList] = useState([]);
     const db = useSQLiteContext();
     const listRef = useRef(null)
@@ -59,11 +59,17 @@ useEffect(() => {
                         }
                     }}
                     />
-                    <View className="w-[70%] flex-row">
-                        <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-500 w-[80%] ' : 'w-[80%] text-gray-900'}`}>
-                            {item.item}
-                        </Text>
-                    </View>
+
+                    <Pressable
+                        onLongPress={() => onLongPressItem(item)}
+                        delayLongPress={700}
+                        className="w-[80%]">
+                        <View className="flex-row">
+                            <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-500 w-[80%] ' : 'w-[80%] text-gray-900'}`}>
+                                {item.item}
+                            </Text>
+                        </View>
+                    </Pressable>
                 </View>
                 
                 <View className="flex-row ">

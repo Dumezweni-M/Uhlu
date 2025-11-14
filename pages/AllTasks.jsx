@@ -10,11 +10,22 @@ import Tabs from "../components/Tabs";
 import ModalView from "../components/Modal";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import Header from "../components/Header";
+import EditModal from "../components/EditModal";
 
 
 const AllTasks = ({ navigation }) => {
     const [ refreshFlag, setRefreshFlag ] = useState(false);
     const [ showModal, setShowModal ] = useState(false)
+    const [ editItem, setEditItem ] = useState(null);
+    const [ showEditModal, setShowEditModal ] = useState(false)
+
+    const openEditModal = (item) => {
+    setEditItem(item);
+    setShowEditModal(true);
+    };
+
+    const closeEditModal = () => setShowEditModal(false);
+
     const triggerRefresh = useCallback(() => {
         setRefreshFlag((prev) => !prev);
     }, [])
@@ -33,13 +44,23 @@ const AllTasks = ({ navigation }) => {
     // >
         <PageWrapper>
             <Header/>
+
+            <EditModal
+                visible={showEditModal}
+                onClose={closeEditModal}
+                taskData={editItem}
+                onUpdated={triggerRefresh}
+            />
                 <View className="border-b border-gray-400 px-4 pt-2 pb-2 w-[100%] flex-row items-center bg-none">
                     <Ionicons name="eye-outline" size={30} color="black"/>
                     <Text className="ml-2 text-2xl text-gray-500 font-bold">Overview</Text>
                 </View>
                 
                 {/* Show all items list */}
-                <List refresh={refreshFlag} />
+                <List 
+                    refresh={refreshFlag}
+                    onLongPressItem={openEditModal}
+                />
 
                 {/* Toggle Modal View*/}
                 <Pressable title="Toggle" onPress={toggleModal} className="bg-black p-2 rounded-full bottom-[9%] right-[44%]  absolute shadow-lg" >
