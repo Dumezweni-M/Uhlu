@@ -22,7 +22,7 @@ const Home = ({refresh}) => {
 
     const LoadList = async () => {
         try {
-            const results = await db.getAllAsync(`SELECT * FROM list WHERE category = "home"`);
+            const results = await db.getAllAsync(`SELECT * FROM list WHERE category = "home" AND isComplete = 0`);
             setList(results);
         } catch (error){
             console.error("Couldnt Fetch List", error)
