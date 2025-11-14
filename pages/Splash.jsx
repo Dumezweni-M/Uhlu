@@ -21,7 +21,7 @@ const SplashSrcn = ({ navigation }) => {
                     style={{ flex: 1, width: "100%", height: "100%" }}
                     resizeMode="contain"
                 ></ImageBackground>
-                <Text className="text-black/50 text-lg"> Uhlu  •  v1.0.1  •  © 2025  eZweni Aether</Text>
+                <Text className="text-black/50 text-lg"> Uhlu  •  v1.2.1  •  © 2025  eZweni Aether</Text>
             </View>
         </>
     )

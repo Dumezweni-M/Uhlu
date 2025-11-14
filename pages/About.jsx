@@ -32,7 +32,7 @@ const About = ({ navigation }) => {
                 </Text>
                 <Divider/> 
                 <Divider/> 
-                <Text className="py-2 text-lg my-2 px-2">Version: v1.0.0 © 2025 eZweni Aether</Text>
+                <Text className="py-2 text-lg my-2 px-2">Version: v1.2.1 © 2025 eZweni Aether</Text>
                 <Text className="py-2 text-lg font-bold my-2 px-2">Thank you for using Uhlu.</Text>
             </View>
             <Tabs/>
