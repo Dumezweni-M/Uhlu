@@ -33,30 +33,33 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View className="flex-1 justify-center items-center bg-black/50 p-4">
-        <View className="bg-white w-full p-4 rounded">
-          <TextInput
-            placeholder="Task title"
-            value={task}
-            onChangeText={setTask}
-            className="border p-2 rounded mb-8 mt-8 w-full"
-          />
+        <View className="bg-white w-full px-6 py-12 rounded">
+
           <CategorySelector
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
           />
+          <TextInput
+            placeholder="Task"
+            value={task}
+            onChangeText={setTask}
+            returnKeyType="done"
+            onSubmitEditing={handleSubmit}
+            className="border p-2 rounded mb-8 w-full"
+          />
    
      
 
-        <View className="flex-row justify-evenly mt-8">
+        <View className="flex-row justify-evenly ">
 
             {/* Styled Modal Cancel Button */}
             <Pressable onPress={onClose} className="items-center border p-1 rounded w-1/4">
-            <Ionicons name="trash-outline" size={20} />
+            <Ionicons name="close" size={21} />
             <Text className="text-center">Cancel</Text>
             </Pressable>
 
             <Pressable onPress={handleSubmit} className="items-center border p-1 rounded w-1/4">
-            <Ionicons name="checkmark-outline" size={20} />
+            <Ionicons name="checkmark" size={20} />
             <Text className="text-center">Save</Text>
             </Pressable>
         </View>

@@ -48,6 +48,8 @@ const AddItem = ({ onAdded }) => {
                 placeholder={`Add ${category} task`}
                 value={task}
                 onChangeText={ setTask }
+                returnKeyType="done"
+                onSubmitEditing={handleSubmit}
                 ></TextInput>
 
                 <Pressable onPress={handleSubmit} className="px-2 py-2 mr-1 rounded-full bg-gray-800 border-4 border-white shadow-md">

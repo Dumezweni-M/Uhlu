@@ -9,7 +9,7 @@ const HeaderMenu = ( ) => {
     const navigation = useNavigation();
 
   return (
-    <View className="">
+    <View>
       <Menu 
         visible={visible}
         onDismiss={() => setVisible(false)}
@@ -20,21 +20,32 @@ const HeaderMenu = ( ) => {
             color="black"
             style={{ marginRight: 10 }}
             onPress={() => setVisible(true)}
-          />
-        }
+            />
+          }
           contentStyle={{
           backgroundColor: "white",
-          borderRadius: 2,             
-          paddingVertical: 0,           
-          elevation: 3,
-          color: "white"                 
+          borderRadius: 2,                           
+          elevation: 5,
+          left: 20,
+          top: 10,
+          color: "black"                 
         }}
       >
 
       {/* <Divider /> */}
-        <Menu.Item title="About" leadingIcon="" onPress={() => navigation.navigate("About")} />
+        <Menu.Item title="Notifications" leadingIcon="inbox" onPress={() => navigation.navigate("About")} />
         <Divider />
-        <Menu.Item title="Settings" leadingIcon="" onPress={() => navigation.navigate("Home")} />
+        <Menu.Item title="About" leadingIcon="information-outline" onPress={() => navigation.navigate("About")} />
+        <Divider />
+        <Menu.Item title="Light/Dark" leadingIcon="theme-light-dark" onPress={() => navigation.navigate("Home")} />
+        <Divider />
+        <Menu.Item title="Privacy" leadingIcon="shield-outline" onPress={() => navigation.navigate("Home")} />
+        <Divider />
+        <Menu.Item title="Language" leadingIcon="translate" onPress={() => navigation.navigate("Home")} />
+        <Divider />
+        <Menu.Item title="Contact" leadingIcon="email-outline" onPress={() => navigation.navigate("Home")} />
+        <Divider />
+        <Menu.Item title="Settings" leadingIcon="cog-outline" onPress={() => navigation.navigate("Home")} />
       </Menu>
     </View>
   );
