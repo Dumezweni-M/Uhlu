@@ -8,14 +8,14 @@ const Tabs = () => {
 
   const tabs = [
     { name: "AllTasks", label: "All", icon: "list-outline" },
-    { name: "Daily", label: "Daily", icon: "repeat-outline" },
+    { name: "Daily", label: "Cycles", icon: "repeat-outline" },
     { name: "Home", label: "Home", icon: "cart-outline" },
     { name: "Work", label: "Work", icon: "briefcase-outline" },
     { name: "Completed", label: "Done", icon: "checkmark" },
   ];
 
   return (
-    <View className="flex-row justify-evenly items-center px-2 pt-2 pb-2 bg-white shadow-lg">
+    <View className="flex-row justify-evenly items-center px-2 pt-2 pb-2 bg-white shadow-lg ">
       {tabs.map((tab) => {
         const isActive = route.name === tab.name; // 👈 highlight current tab
         return (
