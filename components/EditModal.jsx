@@ -53,6 +53,8 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
                 placeholder="Task title"
                 value={task}
                 onChangeText={setTask}
+                returnKeyType="done"
+                onSubmitEditing={handleUpdate}
                 className="border p-2 rounded mb-4 w-full"
             />
 
