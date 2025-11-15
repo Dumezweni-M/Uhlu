@@ -39,14 +39,14 @@ const Daily = ({refresh}) => {
     const resetInterval = setInterval(async () => {
         try {
             const now = Date.now();
-            const oneMinute = 60 * 1000; // Testing
-            // const oneDay = 24 * 60 * 60 * 1000; // Production
+            // const oneMinute = 60 * 1000; // Testing
+            const oneDay = 24 * 60 * 60 * 1000; // Production
 
             // Reset only if more than 1 minute has passed
             const tasks = await db.getAllAsync(`SELECT * FROM list WHERE category = 'daily'`);
 
             tasks.forEach(async (task) => {
-                if (!task.lastReset || now - task.lastReset >= oneMinute) {
+                if (!task.lastReset || now - task.lastReset >= oneDay) {
                     await db.runAsync(
                         `UPDATE list SET isComplete = 0, lastReset = ? WHERE id = ?`,
                         [now, task.id]
