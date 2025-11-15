@@ -39,7 +39,9 @@ export default function App() {
 
             // Migration for existing installs
             try {
-              await db.execAsync(`ALTER TABLE list ADD COLUMN category TEXT;`);
+              // await db.execAsync(`ALTER TABLE list ADD COLUMN category TEXT;`);
+              await db.execAsync(`ALTER TABLE list ADD COLUMN lastReset INTEGER DEFAULT 0;`);
+
             } catch (err) {
               // Column probably already exists — safe to ignore
             }
@@ -51,7 +53,7 @@ export default function App() {
       <PaperProvider>
         <NavigationContainer>
           <StatusBar hidden={true} />
-          <Stack.Navigator initialRouteName="AllTasks" screenOptions={{ headerShown: false }}>
+          <Stack.Navigator initialRouteName="Daily" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="AllTasks" component={AllTasks}/>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="SplashScrn" component={SplashSrcn} />

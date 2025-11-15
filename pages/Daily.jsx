@@ -20,18 +20,48 @@ const Daily = ({refresh}) => {
 
     const LoadList = async () => {
         try {
-            const results = await db.getAllAsync(`SELECT * FROM list WHERE category = "daily" AND isComplete = 0`);
+            const results = await db.getAllAsync(
+                `SELECT * FROM list WHERE category = "daily"`
+            );
             setList(results);
         } catch (error){
             console.error("Couldnt Fetch List", error)
         }
-    }
+    };
 
     const sortedList = list.sort((a, b) => a.isComplete - b.isComplete);
 
   useEffect(() => {
     LoadList()
   }, [refresh, refreshFlag]);
+
+  useEffect(() => {
+    const resetInterval = setInterval(async () => {
+        try {
+            const now = Date.now();
+            const oneMinute = 60 * 1000; // Testing
+            // const oneDay = 24 * 60 * 60 * 1000; // Production
+
+            // Reset only if more than 1 minute has passed
+            const tasks = await db.getAllAsync(`SELECT * FROM list WHERE category = 'daily'`);
+
+            tasks.forEach(async (task) => {
+                if (!task.lastReset || now - task.lastReset >= oneMinute) {
+                    await db.runAsync(
+                        `UPDATE list SET isComplete = 0, lastReset = ? WHERE id = ?`,
+                        [now, task.id]
+                    );
+                }
+            });
+
+            LoadList();
+        } catch (err) {
+            console.log("Failed to reset daily tasks:", err);
+        }
+    }, 5000); // Check every 5 seconds
+
+    return () => clearInterval(resetInterval);
+}, []);
 
     return (
         
