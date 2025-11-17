@@ -3,7 +3,6 @@ import { View, TextInput, Pressable, Text, Modal } from 'react-native'
 import { useSQLiteContext } from "expo-sqlite";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { useNavigation } from '@react-navigation/native'
-import { Picker } from "@react-native-picker/picker";
 import { useRoute } from "@react-navigation/native";
 
 

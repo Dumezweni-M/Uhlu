@@ -1,5 +1,4 @@
 import { Pressable, Text, View } from "react-native";
-import { useState } from "react";
 
 const RadioButton = ({ isChecked, onToggle }) => {
     return (

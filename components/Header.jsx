@@ -1,4 +1,3 @@
-import Ionicons from "@react-native-vector-icons/ionicons";
 import { View, Text, Pressable, ImageBackground } from "react-native";
 import HeaderMenu from "./HeaderMenu";
 

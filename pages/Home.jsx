@@ -8,7 +8,6 @@ import PageWrapper from "../components/PageWrapper";
 import Tabs from "../components/Tabs";
 import AddItem from "../components/AddItem";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 
 const Home = ({refresh}) => {

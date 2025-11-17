@@ -1,5 +1,3 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import PageWrapper from "../components/PageWrapper";
 import { ImageBackground, View, Text } from "react-native";
 import { useEffect } from "react";
 

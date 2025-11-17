@@ -2,15 +2,13 @@
 import React, { useCallback } from "react";
 import { View, Text, Pressable, ImageBackground, Button } from "react-native";
 import { useState, useEffect } from "react";
-import { useSQLiteContext } from "expo-sqlite";
 import PageWrapper from "../components/PageWrapper";
-import AddItem from "../components/AddItem";
 import List from "../components/ListFetch";
 import Tabs from "../components/Tabs";
 import ModalView from "../components/Modal";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import Header from "../components/Header";
-import EditModal from "../components/EditModal";
+import EditModal from "../components/EditModals";
 
 
 const AllTasks = ({ navigation }) => {
@@ -37,11 +35,6 @@ const AllTasks = ({ navigation }) => {
 
 
     return (    
-    //     <ImageBackground
-    //   source={require("../assets/alexander-tsang-qcoHZzJAdhM-unsplash.jpg")}
-    //   style={{ flex: 1, width: "100%", height: "100%" }}
-    //   resizeMode="cover"
-    // >
         <PageWrapper>
             <Header/>
 
@@ -72,7 +65,6 @@ const AllTasks = ({ navigation }) => {
 
                 <ModalView visible={showModal} onClose={toggleModal} triggerRefresh={triggerRefresh}/>
         </PageWrapper>
-        // </ImageBackground>
     )
 }
 

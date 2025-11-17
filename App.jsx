@@ -6,7 +6,6 @@ import { Provider as PaperProvider } from "react-native-paper";
 
 
 import Home from "./pages/Home";
-import List from "./components/ListFetch";
 import About from "./pages/About";
 import SplashSrcn from "./pages/Splash";
 import Work from "./pages/Work";

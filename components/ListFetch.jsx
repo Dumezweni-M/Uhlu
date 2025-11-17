@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { Pressable, Text, View } from "react-native";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
 import { FlashList } from "@shopify/flash-list";
-import { useFocusEffect } from "@react-navigation/native";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import RadioButton from "./RadioButton";
 

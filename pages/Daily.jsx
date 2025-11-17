@@ -36,32 +36,40 @@ const Daily = ({refresh}) => {
     LoadList()
   }, [refresh, refreshFlag]);
 
-  useEffect(() => {
-    const resetInterval = setInterval(async () => {
-        try {
-            const now = Date.now();
-            // const oneMinute = 60 * 1000; // Testing
-            const oneDay = 24 * 60 * 60 * 1000; // Production
+useEffect(() => {
+  const interval = setInterval(async () => {
+    try {
+      const now = new Date();
 
-            // Reset only if more than 1 minute has passed
-            const tasks = await db.getAllAsync(`SELECT * FROM list WHERE category = 'daily'`);
+      // --- Build today's 2 AM timestamp ---
+      const resetTime = new Date();
+      resetTime.setHours(3, 30, 0, 0); 
 
-            tasks.forEach(async (task) => {
-                if (!task.lastReset || now - task.lastReset >= oneDay) {
-                    await db.runAsync(
-                        `UPDATE list SET isComplete = 0, lastReset = ? WHERE id = ?`,
-                        [now, task.id]
-                    );
-                }
-            });
+      // If it's past 2AM, the next reset is tomorrow
+      if (now > resetTime) {
+        resetTime.setDate(resetTime.getDate() + 1);
+      }
+
+      const timeUntilReset = resetTime - now;
+
+      // If within 5 seconds of 3:30 AM 
+      if (timeUntilReset <= 5000) {
+        const timestamp = Date.now();
+        await db.runAsync(
+          `UPDATE list SET isComplete = 0, lastReset = ? WHERE category = 'daily'`,
+          [timestamp]
+        );
+
+        console.log("Daily tasks reset at 3:30 AM");
+      }
 
             LoadList();
-        } catch (err) {
-            console.log("Failed to reset daily tasks:", err);
-        }
-    }, 5000); // Check every 5 seconds
+    } catch (err) {
+      console.log("Failed to reset daily tasks:", err);
+    }
+  }, 5000); // check every 5 seconds
 
-    return () => clearInterval(resetInterval);
+  return () => clearInterval(interval);
 }, []);
 
     return (
