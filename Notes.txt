@@ -1,2 +1,0 @@
-// Build APK file
-eas build --platform android --profile preview

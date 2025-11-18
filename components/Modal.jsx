@@ -10,18 +10,22 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
   const [task, setTask] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [ isImportant, setIsImportant ] = useState(false)
   const db = useSQLiteContext();
 
 
   const handleSubmit = async () => {
     if (!task) return;
+
+    const importantValue = isImportant ? 1 : 0;
     try {
       await db.runAsync(
-        `INSERT INTO list (item, category) VALUES (?, ?)`,
-        [task, selectedCategory]
+        `INSERT INTO list (item, category, important) VALUES (?, ?, ?)`,
+        [task, selectedCategory, importantValue]
       );
       setTask("");
       setSelectedCategory(null);
+      setIsImportant(false)
       onAdded?.();
       triggerRefresh?.();
       onClose?.();
@@ -39,6 +43,8 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
           <CategorySelector
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
+            isImportant={isImportant}
+            setIsImportant={setIsImportant}
           />
 
           <Text className="text-lg text-gray-500 font-bold mb-2">Enter list Item</Text>

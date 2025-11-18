@@ -58,6 +58,13 @@ useEffect(() => {
                         }
                     }}
                     />
+                        <Text className={`
+                        ${item.important === 1 
+                            ? 'w-3 h-3 rounded-full bg-orange-300 absolute left-6 top-1 border-2 border-gray-600' // Red circle styles
+                            : 'hidden' // Hide the component when not important
+                        }`}
+                        >
+                        </Text>
 
                     <Pressable
                         onLongPress={() => onLongPressItem(item)}

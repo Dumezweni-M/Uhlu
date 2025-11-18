@@ -32,6 +32,7 @@ export default function App() {
                 due TEXT,
                 category TEXT,
                 isComplete INTEGER DEFAULT 0,
+                important INTEGER DEFAULT 0,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
               );
             `);
@@ -39,10 +40,11 @@ export default function App() {
             // Migration for existing installs
             try {
               // await db.execAsync(`ALTER TABLE list ADD COLUMN category TEXT;`);
-              await db.execAsync(`ALTER TABLE list ADD COLUMN lastReset INTEGER DEFAULT 0;`);
+              await db.execAsync(`ALTER TABLE list ADD COLUMN important INTEGER DEFAULT 0;`);
+              await db.execAsync(`UPDATE list SET important = 0 WHERE important IS NULL;`);
 
             } catch (err) {
-              // Column probably already exists — safe to ignore
+            
             }
 
           }}

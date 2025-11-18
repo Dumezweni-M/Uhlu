@@ -8,21 +8,24 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
   const db = useSQLiteContext();
   const [task, setTask] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [ isImportant, setIsImportant ] = useState(false)
 
   // Populate state whenever modal opens with a new taskData
   useEffect(() => {
     if (taskData) {
       setTask(taskData.item || "");
       setSelectedCategory(taskData.category || null);
+      setIsImportant(taskData.important === 1);
     }
   }, [taskData]);
 
   const handleUpdate = async () => {
     if (!task.trim()) return;
+    const importantValue = isImportant ? 1 : 0;
     try {
       await db.runAsync(
-        `UPDATE list SET item = ?, category = ? WHERE id = ?`,
-        [task, selectedCategory, taskData.id]
+        `UPDATE list SET item = ?, category = ?, important= ? WHERE id = ?`,
+        [task, selectedCategory, importantValue, taskData.id]
       );
       onUpdated?.(); // trigger parent refresh
       onClose?.();
@@ -46,6 +49,8 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
             <CategorySelector
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
+              isImportant={isImportant}
+              setIsImportant={setIsImportant}
             />
 
             <Text className="text-lg mb-2 text-gray-500 font-bold">Edit Task</Text>
