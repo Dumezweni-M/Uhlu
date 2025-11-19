@@ -43,7 +43,7 @@ const Work = ({refresh}) => {
                     <Ionicons name="briefcase-outline" size={25} color="black"/>
                     <Text className="ml-2 text-2xl text-gray-900 font-bold">Work</Text>
                 </View>
-
+                
                 {/* Work Task items List */}
                     <FlashList
                     data={sortedList}
@@ -51,7 +51,15 @@ const Work = ({refresh}) => {
                     renderItem={({ item }) => (
                         <View className="border-b border-gray-300 rounded py-2 px-4  w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
                         <View className="flex-row space-x-2 items-center">
-        
+                    
+                    {/* Importance Marker - Refactor to component */}
+                    <Text className={`
+                    ${item.important === 1 
+                    ? 'w-2.5 h-1 rounded-full absolute left-[-13] bg-teal-400'
+                    : 'hidden'
+                    }`}
+                    ></Text>
+
                     {/* Radio button for isComplete */}
                     <RadioButton
                     isChecked={item.isComplete === 1} 

@@ -11,7 +11,7 @@ const Tabs = () => {
     { name: "Daily", label: "Cycles", icon: "repeat-outline" },
     { name: "Home", label: "Home", icon: "cart-outline" },
     { name: "Work", label: "Work", icon: "briefcase-outline" },
-    { name: "Completed", label: "Done", icon: "checkmark" },
+    { name: "Notes", label: "Notes", icon: "book-outline" },
   ];
 
   return (

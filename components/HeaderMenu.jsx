@@ -45,7 +45,8 @@ const HeaderMenu = ( ) => {
         <Divider />
         <Menu.Item title="Contact" leadingIcon="email-outline" onPress={() => navigation.navigate("Home")} />
         <Divider />
-        <Menu.Item title="Settings" leadingIcon="cog-outline" onPress={() => navigation.navigate("Home")} />
+        <Menu.Item title="Completed" leadingIcon="check-outline" onPress={() => navigation.navigate("Completed")} />
+        <Divider />
       </Menu>
     </View>
   );

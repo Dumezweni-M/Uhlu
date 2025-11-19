@@ -91,6 +91,7 @@ useEffect(() => {
         Daily                                                        {showList ? "▼" : "▲"}
       </Text>
     </Pressable>
+    
 
     {/* Collapsible list */}
     {showList && (
@@ -101,6 +102,12 @@ useEffect(() => {
           <View className="border-b border-gray-300 rounded py-2 px-4 w-[96%] ml-2 mb-1 flex-row justify-between items-center bg-white">
 
             <View className="flex-row space-x-2 items-center">
+              <Text className={`
+                ${item.important === 1 
+                  ? 'w-2.5 h-1 rounded-full absolute left-[-13] bg-teal-400'
+                  : 'hidden'
+                  }`}
+                        ></Text>
               <RadioButton
                 isChecked={item.isComplete === 1}
                 onToggle={async () => {

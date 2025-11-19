@@ -10,6 +10,11 @@ const List = ({refresh, onLongPressItem}) => {
     const [ list, setList] = useState([]);
     const db = useSQLiteContext();
     const listRef = useRef(null)
+    const [ selectedItemId, setSelectedItemId] = useState(null)
+    
+    const toggleDetails = (itemId) => {
+    setSelectedItemId(prevId => (prevId === itemId ? null : itemId));}
+
 
     const LoadList = async () => {
         try {
@@ -24,7 +29,7 @@ useEffect(() => {
   LoadList().then(() => {
     setTimeout(() => {
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
-    }, 250); // small delay to ensure render
+    }, 250); // small delay to ensure DB render
   });
 }, [refresh]);
 
@@ -37,13 +42,21 @@ useEffect(() => {
                     data={list}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                    <View className="border-b border-gray-300 rounded py-2 px-2  w-[96%] mb-0.5 flex-row justify-between items-center bg-white">
-                        <View className="flex-row space-x-2 items-center">
+                    <View className="border-b border-gray-300 rounded py-2 px-3  w-[96%] mb-0.5 flex-row justify-between items-center bg-white">
+                        <View className="flex-row space-x-1 items-center">
         
+                        <Text className={`
+                        ${item.important === 1 
+                            ? 'w-2.5 h-1 rounded-full absolute left-[-7] bg-teal-400'
+                            : 'hidden'
+                        }`}
+                        >
+                        </Text>
                         <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-300 w-[80%] ' : 'border-gray-300 w-[10%]  max-h-5 text-gray-500  text-xs text-center '}`}>
                             {item.category}
                         </Text>
-                    {/* Radio button for isComplete */}
+
+                    {/* Radio button for toggle isComplete */}
                     <RadioButton
                     isChecked={item.isComplete === 1} 
                     onToggle={async () => {
@@ -58,29 +71,38 @@ useEffect(() => {
                         }
                     }}
                     />
-                        <Text className={`
-                        ${item.important === 1 
-                            ? 'w-3 h-3 rounded-full bg-orange-300 absolute left-6 top-1 border-2 border-gray-600' // Red circle styles
-                            : 'hidden' // Hide the component when not important
-                        }`}
-                        >
-                        </Text>
+
+                        {/* Hide component if Item not marked as important */}
 
                     <Pressable
+                    onPress={() => toggleDetails(item.id)}
                         onLongPress={() => onLongPressItem(item)}
                         delayLongPress={400}
                         className="w-[80%]">
                         <View className="flex-row">
-                            <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-500 w-[80%] ' : 'w-[80%] text-gray-900'}`}>
+                            <Text className={` ${item.isComplete === 1 ? 'line-through text-gray-500 w-[80%] ' : 'font-bold  w-[80%] text-gray-900'}`}>
                                 {item.item}
                             </Text>
+
                         </View>
+
+                    {/* Task Item Expanded Details */}
+                    {item.due && selectedItemId === item.id && ( 
+                    <View>
+                        <Text className="text-sm w-2/6 text-gray-600">
+                            Due: {item.due}
+                        </Text>
+                        <Text className="text-sm w-3/6 flex-row text-gray-600">
+                            createdAt: {item.createdAt}
+                        </Text>
+                    </View>
+                        )}
                     </Pressable>
                 </View>
                 
                 <View className="flex-row ">
 
-                {/* Trash icon for deletion */}
+                {/* Delete Task */}
                 <Ionicons
                     name="trash-outline"
                     color="black"

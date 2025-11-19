@@ -70,10 +70,10 @@ const handleImportantToggle = () => {
         
           <Text
             className={`font-bold ${
-              isImportant ? "text-white" : "text-red-800"
+              isImportant ? "text-white" : "text-black-800 font-bold"
             }`}
           >
-            Urgent
+            Important
           </Text>
       </Pressable>
 
