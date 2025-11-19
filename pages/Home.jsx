@@ -53,11 +53,12 @@ const Home = ({refresh}) => {
                     
                     {/* Importance Marker - Refactor to component */}
                     <Text className={`
-                    ${item.important === 1 
-                    ? 'w-2.5 h-1 rounded-full absolute left-[-13] bg-teal-400'
-                    : 'hidden'
-                    }`}
-                    ></Text>     
+                        ${item.important === 1 
+                            ? 'w-1.5 h-1.5 rounded-full absolute left-[-11] bg-orange-400'
+                            : 'hidden'
+                        }`}
+                        >
+                        </Text>    
                     
                     {/* Radio button for isComplete */}
                     <RadioButton

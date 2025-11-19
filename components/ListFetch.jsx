@@ -47,7 +47,7 @@ useEffect(() => {
         
                         <Text className={`
                         ${item.important === 1 
-                            ? 'w-2.5 h-1 rounded-full absolute left-[-7] bg-teal-400'
+                            ? 'w-1.5 h-1.5 rounded-full absolute left-[-4] bg-orange-400'
                             : 'hidden'
                         }`}
                         >

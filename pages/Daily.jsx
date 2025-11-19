@@ -103,11 +103,12 @@ useEffect(() => {
 
             <View className="flex-row space-x-2 items-center">
               <Text className={`
-                ${item.important === 1 
-                  ? 'w-2.5 h-1 rounded-full absolute left-[-13] bg-teal-400'
-                  : 'hidden'
-                  }`}
-                        ></Text>
+                        ${item.important === 1 
+                            ? 'w-1.5 h-1.5 rounded-full absolute left-[-11] bg-orange-400'
+                            : 'hidden'
+                        }`}
+                        >
+                        </Text>
               <RadioButton
                 isChecked={item.isComplete === 1}
                 onToggle={async () => {
