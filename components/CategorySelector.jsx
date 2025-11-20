@@ -3,8 +3,8 @@ import { View, Text, Pressable } from "react-native";
 const CategorySelector = ({ 
   selectedCategory, 
   setSelectedCategory,
-  isImportant,       // <-- New prop for Important status (boolean)
-  setIsImportant     // <-- New prop setter
+  isImportant,       
+  setIsImportant     
 }) => {
   const categories = ["daily", "home", "work", "misc"];
 
@@ -16,7 +16,6 @@ const handleCategorySelect = (cat) => {
     } else {
       // Select the new category
       setSelectedCategory(cat);
-      // *** REMOVE: setIsImportant(false); ***
     }
   };
 

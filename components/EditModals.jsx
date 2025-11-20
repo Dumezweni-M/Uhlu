@@ -3,12 +3,14 @@ import { View, Text, TextInput, Pressable, Modal } from "react-native";
 import { useSQLiteContext } from "expo-sqlite";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import CategorySelector from "./CategorySelector";
+import DatePicker from "./DatePicker";
 
 const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
   const db = useSQLiteContext();
   const [task, setTask] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [ isImportant, setIsImportant ] = useState(false)
+  const [isImportant, setIsImportant ] = useState(false)
+  const [dueDate, setDueDate ] = useState(null)
 
   // Populate state whenever modal opens with a new taskData
   useEffect(() => {
@@ -16,16 +18,23 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
       setTask(taskData.item || "");
       setSelectedCategory(taskData.category || null);
       setIsImportant(taskData.important === 1);
+      if (taskData.due) {
+                // Convert SQLite YYYY-MM-DD string to Date object
+          setDueDate(new Date(taskData.due)); 
+      } else {
+          setDueDate(null); //Set null if no due date exists
+      }
     }
   }, [taskData]);
 
   const handleUpdate = async () => {
     if (!task.trim()) return;
     const importantValue = isImportant ? 1 : 0;
+    const formattedDueDate = dueDate ? dueDate.toISOString().split('T')[0] : null;
     try {
       await db.runAsync(
-        `UPDATE list SET item = ?, category = ?, important= ? WHERE id = ?`,
-        [task, selectedCategory, importantValue, taskData.id]
+        `UPDATE list SET item = ?, category = ?, important= ?, due = ? WHERE id = ?`,
+        [task, selectedCategory, importantValue, formattedDueDate, taskData.id]
       );
       onUpdated?.(); // trigger parent refresh
       onClose?.();
@@ -44,7 +53,8 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
                 <Ionicons name="eye-outline" size={30} color="black"/>
                 <Text className="ml-2 text-2xl text-gray-500 font-bold">Edit Details</Text>
             </View>
-        
+
+            {/* Category Selector */}
             <Text className="text-lg mb-2 text-gray-500 font-bold">Change category</Text>
             <CategorySelector
               selectedCategory={selectedCategory}
@@ -53,6 +63,7 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
               setIsImportant={setIsImportant}
             />
 
+            {/* Task Entry Editing */}
             <Text className="text-lg mb-2 text-gray-500 font-bold">Edit Task</Text>
             <TextInput
                 placeholder="Task title"
@@ -62,6 +73,13 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
                 onSubmitEditing={handleUpdate}
                 className="border p-2 rounded mb-4 w-full"
             />
+
+            {/* Change selected due date */}
+            <DatePicker 
+            date={dueDate || new Date()} 
+            onDateChange={setDueDate} 
+            isSet={!!dueDate} 
+          />
 
 
           <View className="flex-row justify-evenly mt-8">

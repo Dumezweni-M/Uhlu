@@ -92,9 +92,6 @@ useEffect(() => {
                         <Text className="text-sm w-2/6 text-gray-600">
                             Due: {item.due}
                         </Text>
-                        <Text className="text-sm w-3/6 flex-row text-gray-600">
-                            createdAt: {item.createdAt}
-                        </Text>
                     </View>
                         )}
                     </Pressable>

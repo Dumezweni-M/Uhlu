@@ -40,17 +40,17 @@ export default function App() {
 
             // Migration for existing installs
             try {
-              await db.execAsync(`ALTER TABLE list ADD COLUMN category TEXT;`);
+              // await db.execAsync(`ALTER TABLE list ADD COLUMN category TEXT;`);
               await db.execAsync(`ALTER TABLE list ADD COLUMN important INTEGER DEFAULT 0;`);
-              await db.execAsync(`UPDATE list SET important = 0 WHERE important IS NULL;`);
-              await db.execAsync(`
-                UPDATE list
-                SET due = date('now', '+7 days')
-                WHERE due IS NULL;
-              `);
             } catch (err) {
               
             }
+            await db.execAsync(`UPDATE list SET important = 0 WHERE important IS NULL;`);
+            await db.execAsync(`
+              UPDATE list
+              SET due = date('now', '+7 days')
+              WHERE due IS NULL;
+            `);
 
           }}
           options={{ useNewConnection: false }}

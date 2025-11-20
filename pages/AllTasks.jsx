@@ -9,6 +9,7 @@ import ModalView from "../components/Modal";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import Header from "../components/Header";
 import EditModal from "../components/EditModals";
+import DatePicker from "../components/DatePicker";
 
 
 const AllTasks = ({ navigation }) => {
@@ -54,7 +55,7 @@ const AllTasks = ({ navigation }) => {
                     refresh={refreshFlag}
                     onLongPressItem={openEditModal}
                 />
-
+                
                 {/* Toggle Modal View*/}
                 <Pressable title="Toggle" onPress={toggleModal} className="bg-black p-2 rounded-full bottom-[9%] right-[44%]  absolute shadow-lg" >
                     <Ionicons name="add" size={30} color="white"/>

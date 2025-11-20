@@ -4,28 +4,30 @@ import { View, Text, TextInput, Pressable, Modal } from "react-native";
 import { useSQLiteContext } from "expo-sqlite";
 import CategorySelector from "./CategorySelector";
 import Ionicons from "@react-native-vector-icons/ionicons";
+import DatePicker from "./DatePicker";
+
 
 
 
 const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
   const [task, setTask] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [ isImportant, setIsImportant ] = useState(false)
+  const [isImportant, setIsImportant] = useState(false)
+  const [dueDate, setDueDate] = useState(null);
   const db = useSQLiteContext();
 
 
   const handleSubmit = async () => {
     if (!task) return;
-
-    const importantValue = isImportant ? 1 : 0;
+    const formattedDueDate = dueDate ? dueDate.toISOString().split('T')[0] : null;
     try {
       await db.runAsync(
-        `INSERT INTO list (item, category, important) VALUES (?, ?, ?)`,
-        [task, selectedCategory, importantValue]
+        `INSERT INTO list (item, category, due) VALUES (?, ?, ?)`,
+        [task, selectedCategory, formattedDueDate]
       );
       setTask("");
       setSelectedCategory(null);
-      setIsImportant(false)
+      setDueDate(null);
       onAdded?.();
       triggerRefresh?.();
       onClose?.();
@@ -39,7 +41,7 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
       <View className="flex-1 justify-center items-center bg-black/50 p-4">
         <View className="bg-white w-full px-6 py-12 rounded">
 
-          <Text className="text-lg text-gray-500 font-bold mb-2">Select category</Text>
+          {/* Task category selector */}
           <CategorySelector
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
@@ -47,7 +49,7 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
             setIsImportant={setIsImportant}
           />
 
-          <Text className="text-lg text-gray-500 font-bold mb-2">Enter list Item</Text>
+          {/* Set task */}
           <TextInput
             placeholder="Task"
             value={task}
@@ -57,7 +59,11 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
             className="border p-2 rounded mb-8 w-full"
           />
    
-     
+          <DatePicker 
+            date={dueDate || new Date()} 
+            onDateChange={setDueDate} 
+            isSet={!!dueDate} 
+          />
 
         <View className="flex-row justify-evenly ">
 
