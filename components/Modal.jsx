@@ -41,14 +41,7 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
       <View className="flex-1 justify-center items-center bg-black/50 p-4">
         <View className="bg-white w-full px-6 py-12 rounded">
 
-          {/* Task category selector */}
-          <CategorySelector
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            isImportant={isImportant}
-            setIsImportant={setIsImportant}
-          />
-
+          <Text className="text-lg text-gray-500 font-bold mb-2">1. Enter Details</Text>
           {/* Set task */}
           <TextInput
             placeholder="Task"
@@ -56,16 +49,27 @@ const TaskModal = ({ visible, onClose, onAdded, triggerRefresh }) => {
             onChangeText={setTask}
             returnKeyType="done"
             onSubmitEditing={handleSubmit}
-            className="border p-2 rounded mb-8 w-full"
+            className="border border-gray-700 p-2 rounded mb-8 w-full"
           />
-   
+
+          {/* Task category selector */}
+          <Text className="text-lg text-gray-500 font-bold mb-2 border-t-2 border-gray-200 pt-4">2. Select Category (Optional)</Text>
+          <CategorySelector
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            isImportant={isImportant}
+            setIsImportant={setIsImportant}
+          />
+
+
+          <Text className="text-lg text-gray-500 font-bold mb-2 border-t-2 border-gray-200 pt-4">3. Select Due Date (Optional)</Text>
           <DatePicker 
             date={dueDate || new Date()} 
             onDateChange={setDueDate} 
             isSet={!!dueDate} 
           />
 
-        <View className="flex-row justify-evenly ">
+        <View className="flex-row justify-evenly mt-4 ">
 
             {/* Styled Modal Cancel Button */}
             <Pressable onPress={onClose} className="items-center border p-1 rounded w-1/4">

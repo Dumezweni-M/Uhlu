@@ -37,7 +37,7 @@ const handleImportantToggle = () => {
           <Pressable
             key={cat}
             onPress={() => handleCategorySelect(cat)}
-            className={`px-4 py-2 mr-2 mb-2 rounded border ${
+            className={`px-4 py-1 mr-2 mb-2 rounded-xl border ${
               selectedCategory === cat
                 ? "bg-gray-700 border-gray-100"
                 : "bg-white border-gray-400"
@@ -56,11 +56,11 @@ const handleImportantToggle = () => {
       </View>
 
       {/* --- Separate Important Toggle Button --- */}
-      <View className="flex-row items-center">
+      <View className="flex-row items-center pt-4">
       <Text className="text-md pr-2">Opt 2:</Text>
       <Pressable
         onPress={handleImportantToggle} // Use the new handler
-        className={`px-4 py-2 mr-2 mb-2 rounded border ${
+        className={`px-3 py-1 mr-2 mb-2 rounded-xl border ${
           isImportant
             ? "bg-gray-700 border-gray-500" // Distinct look for important
             : "bg-white border-gray-400"

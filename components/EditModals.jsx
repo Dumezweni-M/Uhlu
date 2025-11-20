@@ -54,17 +54,8 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
                 <Text className="ml-2 text-2xl text-gray-500 font-bold">Edit Details</Text>
             </View>
 
-            {/* Category Selector */}
-            <Text className="text-lg mb-2 text-gray-500 font-bold">Change category</Text>
-            <CategorySelector
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              isImportant={isImportant}
-              setIsImportant={setIsImportant}
-            />
-
             {/* Task Entry Editing */}
-            <Text className="text-lg mb-2 text-gray-500 font-bold">Edit Task</Text>
+            <Text className="text-lg mb-2 text-gray-500 font-bold">1. Edit Task</Text>
             <TextInput
                 placeholder="Task title"
                 value={task}
@@ -73,8 +64,18 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
                 onSubmitEditing={handleUpdate}
                 className="border p-2 rounded mb-4 w-full"
             />
+            {/* Category Selector */}
+            <Text className="text-lg mb-2 text-gray-500 font-bold border-t-2 border-gray-200 pt-4">2. Change category</Text>
+            <CategorySelector
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              isImportant={isImportant}
+              setIsImportant={setIsImportant}
+            />
+
 
             {/* Change selected due date */}
+            <Text className="text-lg mb-2 text-gray-500 font-bold border-t-2 border-gray-200 pt-4">3. Change Date</Text>
             <DatePicker 
             date={dueDate || new Date()} 
             onDateChange={setDueDate} 
