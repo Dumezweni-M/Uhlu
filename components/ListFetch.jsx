@@ -6,6 +6,24 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 import RadioButton from "./RadioButton";
 
 
+const formatDueDate = (dateString) => {
+    if (!dateString) return null;
+
+    // IMPORTANT: Append 'T00:00:00' to force local parsing and prevent timezone shift
+    const date = new Date(dateString + 'T00:00:00'); 
+    
+    // Check if the date is valid before formatting
+    if (isNaN(date.getTime())) return dateString; // Return raw string if invalid
+    
+    // Apply the desired format: 1 Jan 2026
+    return date.toLocaleDateString('en-UK', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+};
+
+
 const List = ({refresh, onLongPressItem}) => {
     const [ list, setList] = useState([]);
     const db = useSQLiteContext();
@@ -88,11 +106,10 @@ useEffect(() => {
 
                     {/* Task Item Expanded Details */}
                     {item.due && selectedItemId === item.id && ( 
-                    <View>
-                        <Text className="text-sm w-2/6 text-gray-600">
-                            Due: {item.due}
+                    
+                        <Text className="text-md ml-2 w-2/6 text-gray-600">
+                            Due: {formatDueDate(item.due)}
                         </Text>
-                    </View>
                         )}
                     </Pressable>
                 </View>

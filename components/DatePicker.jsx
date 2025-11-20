@@ -9,6 +9,7 @@ import Ionicons from "@react-native-vector-icons/ionicons";
 const DatePicker = ({ date, onDateChange }) => {
     const [showPicker, setShowPicker] = useState(false);
 
+
     const onChange = (event, selectedDate) => {
         // If selectedDate exists, use it; otherwise, use the existing date.
         const currentDate = selectedDate || date; 
@@ -19,16 +20,15 @@ const DatePicker = ({ date, onDateChange }) => {
             onDateChange(currentDate); 
         }
     };
-    
-    // Function to clear the date
-    const clearDate = () => {
-        onDateChange(null);
-    };
-
+   
     // Determine the text to display
     const displayDateText = date 
-        ? date.toLocaleDateString('en-US') 
-        : "Optional"; // Display "Optional" when date is null
+        ? date.toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        })
+        : "Optional";
 
     return (
         <View className="mb-4">
@@ -45,16 +45,6 @@ const DatePicker = ({ date, onDateChange }) => {
                     </Text>
                     <Ionicons name="calendar-outline" size={20} color="gray" />
                 </Pressable>
-
-                {/* Clear Button (Only show if a date is selected) */}
-                {date && (
-                    <Pressable 
-                        onPress={clearDate}
-                        className="p-3 rounded border border-red-300 bg-red-50"
-                    >
-                        <Ionicons name="close-circle-outline" size={20} color="red" />
-                    </Pressable>
-                )}
             </View>
 
 

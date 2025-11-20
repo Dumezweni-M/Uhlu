@@ -20,7 +20,7 @@ const EditModal = ({ visible, onClose, taskData, onUpdated }) => {
       setIsImportant(taskData.important === 1);
       if (taskData.due) {
                 // Convert SQLite YYYY-MM-DD string to Date object
-          setDueDate(new Date(taskData.due)); 
+          setDueDate(new Date(taskData.due + 'T00:00:00')); 
       } else {
           setDueDate(null); //Set null if no due date exists
       }
