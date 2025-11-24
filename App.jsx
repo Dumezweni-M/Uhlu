@@ -37,6 +37,17 @@ export default function App() {
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
               );
             `);
+            
+            // Create Notes table 
+            await db.execAsync(`
+              CREATE TABLE IF NOT EXISTS Notes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                content TEXT NOT NULL,
+                category TEXT,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+              );
+            `);
 
             // Migration for existing installs
             try {
@@ -59,7 +70,7 @@ export default function App() {
       <PaperProvider>
         <NavigationContainer>
           <StatusBar hidden={true} />
-          <Stack.Navigator initialRouteName="AllTasks" screenOptions={{ headerShown: false }}>
+          <Stack.Navigator initialRouteName="Notes" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="AllTasks" component={AllTasks}/>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="SplashScrn" component={SplashSrcn} />

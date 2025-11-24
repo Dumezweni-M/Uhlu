@@ -15,8 +15,8 @@ const HeaderMenu = ( ) => {
         onDismiss={() => setVisible(false)}
         anchor={
           <Ionicons
-            name="menu"
-            size={26}
+            name="ellipsis-horizontal"
+            size={22}
             color="black"
             style={{ marginRight: 10 }}
             onPress={() => setVisible(true)}
